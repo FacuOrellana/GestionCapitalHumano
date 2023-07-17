@@ -7,13 +7,13 @@ public partial class Contrato
 {
     public int IdContrato { get; set; }
 
-    public DateTime? FechaInicio { get; set; }
+    public DateTime FechaInicio { get; set; }
 
-    public DateTime? FechaFin { get; set; }
+    public DateTime FechaFin { get; set; }
 
-    public decimal? Sueldo { get; set; }
+    public decimal Sueldo { get; set; }
 
-    public string? Seniority { get; set; }
+    public string Seniority { get; set; }
 
-    public int? IdEmpleado { get; set; }
+    public int IdEmpleado { get; set; }
 }

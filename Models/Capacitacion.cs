@@ -7,11 +7,11 @@ public partial class Capacitacion
 {
     public int IdCapacitacion { get; set; }
 
-    public string? Descripcion { get; set; }
+    public string Descripcion { get; set; }
 
-    public DateTime? Fecha { get; set; }
+    public DateTime Fecha { get; set; }
 
-    public TimeSpan? Duracion { get; set; }
+    public int DuracionHoras { get; set; }
 
-    public virtual ICollection<EmpleadoCapacitacion> EmpleadoCapacitacions { get; set; } = new List<EmpleadoCapacitacion>();
+    public virtual ICollection<EmpleadoCapacitacion> EmpleadoCapacitaciones { get; set; } = new List<EmpleadoCapacitacion>();
 }

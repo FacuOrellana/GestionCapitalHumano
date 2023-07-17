@@ -137,7 +137,7 @@ public partial class CapitalHumanoContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("IdEmpleado_Capacitacion");
 
-            entity.HasOne(d => d.IdCapacitacionNavigation).WithMany(p => p.EmpleadoCapacitacions)
+            entity.HasOne(d => d.IdCapacitacionNavigation).WithMany(p => p.EmpleadoCapacitaciones)
                 .HasForeignKey(d => d.IdCapacitacion)
                 .HasConstraintName("FK_Empleado_Capacitacion_Capacitacion");
 
