@@ -20,10 +20,6 @@ namespace GestionCapitalHumano.Services
             return entityEntry.Entity;
         }
 
-        public List<Empleado> getEmpleados()
-        {
-            List<Empleado> listaEmpleados = _context.Empleados.ToList();
-            return listaEmpleados;
         }
 
 
