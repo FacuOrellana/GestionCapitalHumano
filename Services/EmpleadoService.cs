@@ -1,4 +1,5 @@
 ﻿using GestionCapitalHumano.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace GestionCapitalHumano.Services
 {
@@ -7,16 +8,22 @@ namespace GestionCapitalHumano.Services
 
         private CapitalHumanoContext _context;
 
-        public EmpleadoService(CapitalHumanoContext capitalHumanoContext)
+        public EmpleadoService()
         {
-            _context = capitalHumanoContext;
+            _context = new CapitalHumanoContext();
         }
 
         public Empleado crearEmpleado(Empleado empleado)
         {
-            //new method
-            return _context.Empleados.Add(empleado);
+            EntityEntry<Empleado> entityEntry = _context.Empleados.Add(empleado);
+            _context.SaveChanges(); // Guardar los cambios en la base de datos.
+            return entityEntry.Entity;
+        }
 
+        public List<Empleado> getEmpleados()
+        {
+            List<Empleado> listaEmpleados = _context.Empleados.ToList();
+            return listaEmpleados;
         }
 
 

@@ -13,22 +13,30 @@ namespace GestionCapitalHumano.Controllers
         private readonly ILogger<EmpleadoController> _logger;
         private EmpleadoService _service;
 
-        public EmpleadoController(ILogger<EmpleadoController> logger, EmpleadoService _empleadoService)
+        public EmpleadoController(ILogger<EmpleadoController> logger)
         {
             _logger = logger;
-            _service = _empleadoService;
+            _service = new EmpleadoService();
         }
 
-        [HttpPost(Name = "PostEmpleado")]
-        public Empleado Post(Empleado empleado)
+        [HttpPost]
+        public IActionResult Post(Empleado empleado)
         {
-            return _service.crearEmpleado(empleado);
+            return Ok(_service.crearEmpleado(empleado));
         }
 
-        [HttpGet(Name = "GetEmpleados")]
-        public IEnumerable<Empleado> Get()
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
-            return new List<Empleado>().ToArray();
+           return Ok(new Empleado());
+
+           
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_service.getEmpleados());
         }
     }
 }
