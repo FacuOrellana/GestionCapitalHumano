@@ -7,11 +7,18 @@ namespace GestionCapitalHumano.Managers
     {
         public List<Area> GetAllAreas()
         {
-            return new List<Area>();
+            using (var context = new CapitalHumanoContext())
+            {
+                return context.Areas.ToList();
+            }
         }
         public void crearArea(string descripcion) 
         {
-        
+            using (var context = new CapitalHumanoContext())
+            {
+               var area = context.Areas.Add(new Area { Descripcion = descripcion });
+                context.SaveChanges();
+            }
         }
     }
 }
