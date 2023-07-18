@@ -23,6 +23,7 @@ namespace GestionCapitalHumano.Controllers
         { 
             var areas = _areasManager.GetAllAreas();
             return areas;
+
         }
     }
 }
