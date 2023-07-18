@@ -1,5 +1,5 @@
-﻿using GestionCapitalHumano.Models;
-using GestionCapitalHumano.Services;
+﻿using GestionCapitalHumano.Managers;
+using GestionCapitalHumano.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,32 +11,30 @@ namespace GestionCapitalHumano.Controllers
     public class EmpleadoController: ControllerBase
     {
         private readonly ILogger<EmpleadoController> _logger;
-        private EmpleadoService _service;
+        private EmpleadoManager _manager;
 
         public EmpleadoController(ILogger<EmpleadoController> logger)
         {
             _logger = logger;
-            _service = new EmpleadoService();
+            _manager = new EmpleadoManager();
         }
 
         [HttpPost]
         public IActionResult Post(Empleado empleado)
         {
-            return Ok(_service.crearEmpleado(empleado));
+            return Ok(_manager.crearEmpleado(empleado));
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult Get(int id)
         {
-           return Ok(new Empleado());
-
-           
+           return Ok(_manager.getEmpleado(id));
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_service.getEmpleados());
+            return Ok(_manager.getEmpleados());
         }
     }
 }
