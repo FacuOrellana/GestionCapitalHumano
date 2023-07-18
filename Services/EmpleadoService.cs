@@ -12,12 +12,12 @@ namespace GestionCapitalHumano.Services
             _context = capitalHumanoContext;
         }
 
-        public Empleado crearEmpleado(Empleado empleado)
-        {
-            //new method
-            return _context.Empleados.Add(empleado);
+        //public Empleado crearEmpleado(Empleado empleado)
+        //{
+        //    //new method
+        //    return _context.Empleados.Add(empleado);
 
-        }
+        //}
 
 
 

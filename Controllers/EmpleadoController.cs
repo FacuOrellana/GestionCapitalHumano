@@ -19,11 +19,11 @@ namespace GestionCapitalHumano.Controllers
             _service = _empleadoService;
         }
 
-        [HttpPost(Name = "PostEmpleado")]
-        public Empleado Post(Empleado empleado)
-        {
-            return _service.crearEmpleado(empleado);
-        }
+        //[HttpPost(Name = "PostEmpleado")]
+        //public Empleado Post(Empleado empleado)
+        //{
+        //    return _service.crearEmpleado(empleado);
+        //}
 
         [HttpGet(Name = "GetEmpleados")]
         public IEnumerable<Empleado> Get()
