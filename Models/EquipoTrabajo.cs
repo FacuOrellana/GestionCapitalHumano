@@ -9,7 +9,5 @@ public partial class EquipoTrabajo
 
     public string? Descripcion { get; set; }
 
-    public int? IdEmpleado { get; set; }
-
     public int? IdDepartamento { get; set; }
 }

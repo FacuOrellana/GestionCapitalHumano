@@ -11,5 +11,4 @@ public partial class ObraSocial
 
     public decimal? Aporte { get; set; }
 
-    public int? IdEmpleado { get; set; }
 }

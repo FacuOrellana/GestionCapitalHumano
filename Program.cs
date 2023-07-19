@@ -13,6 +13,10 @@ builder.Services.AddSwaggerGen();
 // Registra la implementación de IAreasManager
 builder.Services.AddScoped<IAreasManager, AreaManager>(); // Reemplaza 'AreasManager' con la implementación real que estás utilizando
 builder.Services.AddScoped<IContratoManager, ContratoManager>();
+builder.Services.AddScoped<IPuestoTrabajoManager, PuestoTrabajoManager>();
+builder.Services.AddScoped<IObraSocialManager, ObraSocialManager>();
+builder.Services.AddScoped<ISindicatoManager, SindicatoManager>();
+builder.Services.AddScoped<IEquipoTrabajoManager, EquipoTrabajoManager>();
 
 var app = builder.Build();
 

@@ -5,11 +5,10 @@ namespace GestionCapitalHumano.Models;
 
 public partial class Sindicato
 {
+    public int IdSindicato { get; set; }
+
     public string? Descripcion { get; set; }
 
     public decimal? Aporte { get; set; }
 
-    public int IdSindicato { get; set; }
-
-    public int? IdEmpleado { get; set; }
 }

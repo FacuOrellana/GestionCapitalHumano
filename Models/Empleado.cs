@@ -5,6 +5,7 @@ namespace GestionCapitalHumano.Models;
 
 public partial class Empleado
 {
+    public int IdEmpleado { get; set; }
     public string Nombre { get; set; }
 
     public string Apellido { get; set; }
@@ -17,9 +18,12 @@ public partial class Empleado
 
     public string Ciudad { get; set; }
 
-    public int IdEmpleado { get; set; }
     public virtual ObraSocial ObraSocial { get; set; }
     public virtual Contrato Contrato { get; set; }
+    public virtual Sindicato Sindicato { get; set; }
+    public virtual PuestoTrabajo PuestoTrabajo { get; set; }
+    public virtual EquipoTrabajo EquipoTrabajo { get; set; }
+
     public virtual ICollection<Asistencia> Asistencia { get; set; } = new List<Asistencia>();
 
     public virtual ICollection<EmpleadoCapacitacion> EmpleadoCapacitacions { get; set; } = new List<EmpleadoCapacitacion>();

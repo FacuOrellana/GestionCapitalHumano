@@ -16,17 +16,6 @@ namespace GestionCapitalHumano.Controllers
             _areasManager = areasManager;
         }
 
-
-        [HttpGet("areas")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public ActionResult<List<Area>> GetAllAreas()
-        {
-            var areas = _areasManager.GetAllAreas();
-            return areas;
-
-        }
-
         ///<summary>
         /// Create a new area.
         /// </summary>
