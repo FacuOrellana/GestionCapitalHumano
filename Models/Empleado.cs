@@ -18,7 +18,8 @@ public partial class Empleado
     public string Ciudad { get; set; }
 
     public int IdEmpleado { get; set; }
-
+    public virtual ObraSocial ObraSocial { get; set; }
+    public virtual Contrato Contrato { get; set; }
     public virtual ICollection<Asistencia> Asistencia { get; set; } = new List<Asistencia>();
 
     public virtual ICollection<EmpleadoCapacitacion> EmpleadoCapacitacions { get; set; } = new List<EmpleadoCapacitacion>();

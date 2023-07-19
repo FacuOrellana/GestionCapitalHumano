@@ -40,7 +40,7 @@ namespace GestionCapitalHumano.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<AreaDTO> createArea([FromBody] AreaDTO areaDTO)
         {
-            if (areaDTO == null || string.IsNullOrWhiteSpace(areaDTO.Descripcion))
+            if ( string.IsNullOrWhiteSpace(areaDTO.Descripcion))
             {
                 return BadRequest("La descripción del área es requerida.");
             }

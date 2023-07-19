@@ -37,6 +37,21 @@ namespace GestionCapitalHumano.Controllers
 
         }
 
+        /// <summary>
+        /// Create a new contrato
+        /// </summary>
+        /// <param name="contrato"></param>
+        /// <returns></returns>
+
+        [HttpPost("contratos")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<Contrato> crearContrato([FromBody] ContratoDTO contrato)
+        {
+            var createdContrato = _contratoManager.CrearContrato(contrato.FechaInicio,contrato.FechaFin,contrato.Sueldo,contrato.Seniority,contrato.IdEmpleado);
+            return createdContrato;
+
+        }
 
     }
 }
