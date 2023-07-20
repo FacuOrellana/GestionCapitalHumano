@@ -17,7 +17,7 @@ builder.Services.AddScoped<IPuestoTrabajoManager, PuestoTrabajoManager>();
 builder.Services.AddScoped<IObraSocialManager, ObraSocialManager>();
 builder.Services.AddScoped<ISindicatoManager, SindicatoManager>();
 builder.Services.AddScoped<IEquipoTrabajoManager, EquipoTrabajoManager>();
-
+builder.Services.AddScoped<IEmpleadoManager, EmpleadoManager>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

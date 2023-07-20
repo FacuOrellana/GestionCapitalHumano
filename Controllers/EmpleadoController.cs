@@ -1,40 +1,43 @@
-﻿using GestionCapitalHumano.Managers;
+﻿using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace GestionCapitalHumano.Controllers
 {
     [ApiController]
-    [Route("Empleado")]
+    [Route("/api")]
     public class EmpleadoController: ControllerBase
     {
-        private readonly ILogger<EmpleadoController> _logger;
-        private EmpleadoManager _manager;
+        private readonly IEmpleadoManager _empleadoManager;
 
-        public EmpleadoController(ILogger<EmpleadoController> logger)
+        public EmpleadoController(IEmpleadoManager empleadoManager)
         {
-            _logger = logger;
-            _manager = new EmpleadoManager();
+            _empleadoManager = empleadoManager;
         }
 
-        [HttpPost]
+        [HttpPost("empleados")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post(Empleado empleado)
         {
-            return Ok(_manager.crearEmpleado(empleado));
+            return Ok(_empleadoManager.crearEmpleado(empleado));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("empleados/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult Get(int id)
         {
-           return Ok(_manager.getEmpleado(id));
+           return Ok(_empleadoManager.getEmpleado(id));
         }
 
-        [HttpGet]
+        [HttpGet("empleados")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult Get()
         {
-            return Ok(_manager.getEmpleados());
+            return Ok(_empleadoManager.getEmpleados());
         }
     }
 }
