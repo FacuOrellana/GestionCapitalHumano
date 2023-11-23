@@ -12,10 +12,10 @@ namespace GestionCapitalHumano.Managers
             using var context = new CapitalHumanoContext();
             return context.Empleados.
                 Include(e => e.ObraSocial).
-                Include(e => e.Contrato).
                 Include(e => e.Sindicato).
                 Include(e => e.PuestoTrabajo).
-                Include(e => e.EquipoTrabajo).ToList(); ;
+                Include(e => e.EquipoTrabajo).
+                ToList(); 
         }
 
         public Empleado crearEmpleado(Empleado empleado)
@@ -32,7 +32,6 @@ namespace GestionCapitalHumano.Managers
             {
                 var empleado = context.Empleados.
                     Include(e => e.ObraSocial).
-                    Include(e => e.Contrato).
                     Include(e => e.Sindicato).
                     Include(e => e.PuestoTrabajo).
                     Include(e => e.EquipoTrabajo).

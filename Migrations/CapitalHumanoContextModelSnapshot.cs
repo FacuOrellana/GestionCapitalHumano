@@ -163,7 +163,7 @@ namespace GestionCapitalHumano.Migrations
                         .HasColumnType("nchar(10)")
                         .IsFixedLength();
 
-                    b.Property<int>("ContratoIdContrato")
+                    b.Property<int>("IdContrato")
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
@@ -171,7 +171,7 @@ namespace GestionCapitalHumano.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("EquipoTrabajoIdEquipoTrabajo")
+                    b.Property<int>("IdEquipoTrabajo")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FechaNacimiento")
@@ -185,27 +185,27 @@ namespace GestionCapitalHumano.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("ObraSocialIdObraSocial")
+                    b.Property<int>("IdObraSocial")
                         .HasColumnType("int");
 
-                    b.Property<int>("PuestoTrabajoIdPuestoTrabajo")
+                    b.Property<int>("IdPuestoTrabajo")
                         .HasColumnType("int");
 
-                    b.Property<int>("SindicatoIdSindicato")
+                    b.Property<int>("IdSindicato")
                         .HasColumnType("int");
 
                     b.HasKey("IdEmpleado")
                         .HasName("PK_Empleados");
 
-                    b.HasIndex("ContratoIdContrato");
+                    b.HasIndex("IdContrato");
 
-                    b.HasIndex("EquipoTrabajoIdEquipoTrabajo");
+                    b.HasIndex("IdEquipoTrabajo");
 
-                    b.HasIndex("ObraSocialIdObraSocial");
+                    b.HasIndex("IdObraSocial");
 
-                    b.HasIndex("PuestoTrabajoIdPuestoTrabajo");
+                    b.HasIndex("IdPuestoTrabajo");
 
-                    b.HasIndex("SindicatoIdSindicato");
+                    b.HasIndex("IdSindicato");
 
                     b.ToTable("Empleado", (string)null);
                 });
@@ -434,31 +434,31 @@ namespace GestionCapitalHumano.Migrations
                 {
                     b.HasOne("GestionCapitalHumano.Models.Contrato", "Contrato")
                         .WithMany()
-                        .HasForeignKey("ContratoIdContrato")
+                        .HasForeignKey("IdContrato")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GestionCapitalHumano.Models.EquipoTrabajo", "EquipoTrabajo")
                         .WithMany()
-                        .HasForeignKey("EquipoTrabajoIdEquipoTrabajo")
+                        .HasForeignKey("IdEquipoTrabajo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GestionCapitalHumano.Models.ObraSocial", "ObraSocial")
                         .WithMany()
-                        .HasForeignKey("ObraSocialIdObraSocial")
+                        .HasForeignKey("IdObraSocial")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GestionCapitalHumano.Models.PuestoTrabajo", "PuestoTrabajo")
                         .WithMany()
-                        .HasForeignKey("PuestoTrabajoIdPuestoTrabajo")
+                        .HasForeignKey("IdPuestoTrabajo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GestionCapitalHumano.Models.Sindicato", "Sindicato")
                         .WithMany()
-                        .HasForeignKey("SindicatoIdSindicato")
+                        .HasForeignKey("IdSindicato")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

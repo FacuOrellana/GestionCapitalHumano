@@ -19,7 +19,6 @@ public partial class Empleado
     public string Ciudad { get; set; }
 
     public virtual ObraSocial ObraSocial { get; set; }
-    public virtual Contrato Contrato { get; set; }
     public virtual Sindicato Sindicato { get; set; }
     public virtual PuestoTrabajo PuestoTrabajo { get; set; }
     public virtual EquipoTrabajo EquipoTrabajo { get; set; }
