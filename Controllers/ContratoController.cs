@@ -48,7 +48,7 @@ namespace GestionCapitalHumano.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Contrato> crearContrato([FromBody] ContratoDTO contrato)
         {
-            var createdContrato = _contratoManager.CrearContrato(contrato.FechaInicio,contrato.FechaFin,contrato.Sueldo,contrato.Seniority,contrato.IdEmpleado);
+            var createdContrato = _contratoManager.CrearContrato(contrato.FechaInicio,contrato.FechaFin,contrato.Sueldo,contrato.Seniority,contrato.Empleado);
             return createdContrato;
 
         }

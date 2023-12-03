@@ -7,6 +7,6 @@ namespace GestionCapitalHumano.Interfaces
     {
         List<Contrato> GetAllContratos();
         List<Contrato> GetContratosById(int id);
-        public Contrato CrearContrato(DateTime fechainicio, DateTime fechafin, decimal sueldo, string seniority, int idEmpleado);
+        public Contrato CrearContrato(DateTime fechainicio, DateTime fechafin, decimal sueldo, string seniority, Empleado Empleado);
     }
 }

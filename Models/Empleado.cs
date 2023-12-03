@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GestionCapitalHumano.Models;
 
-public partial class Empleado
+public class Empleado
 {
     public int IdEmpleado { get; set; }
     public string Nombre { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GestionCapitalHumano.Models;
 
-public partial class Contrato
+public class Contrato
 {
     public int IdContrato { get; set; }
 
@@ -15,5 +15,5 @@ public partial class Contrato
 
     public string Seniority { get; set; }
 
-    public int IdEmpleado { get; set; }
+    public virtual Empleado Empleado { get; set; }
 }

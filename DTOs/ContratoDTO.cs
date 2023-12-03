@@ -1,4 +1,6 @@
-﻿namespace GestionCapitalHumano.DTOs
+﻿using GestionCapitalHumano.Models;
+
+namespace GestionCapitalHumano.DTOs
 {
     public struct ContratoDTO
     {
@@ -10,6 +12,6 @@
 
         public string Seniority { get; set; }
 
-        public int IdEmpleado { get; set; }
+        public Empleado Empleado{ get; set; }
     }
 }
