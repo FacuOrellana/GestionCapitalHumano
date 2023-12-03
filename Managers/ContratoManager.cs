@@ -1,7 +1,9 @@
-﻿using GestionCapitalHumano.DTOs;
+﻿using System.Diagnostics;
+using GestionCapitalHumano.DTOs;
 using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using System.Diagnostics.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestionCapitalHumano.Managers
 {
@@ -9,29 +11,29 @@ namespace GestionCapitalHumano.Managers
     {
         public List<Contrato> GetAllContratos()
         {
-            using (var context = new CapitalHumanoContext())
-            {
-                return context.Contratos.ToList();
-            }
+            using var context = new CapitalHumanoContext();
+            var contratos = context.Contratos.Include(c => c.Empleado).
+                ToList();
+            return contratos;
         }
         public List<Contrato> GetContratosById(int id)
         {
             using (var context = new CapitalHumanoContext())
             {
                 return context.Contratos.
-                    Where(c=>c.IdEmpleado== id).ToList();
+                    Where(c => c.Empleado.IdEmpleado == id).ToList();
             }
         }
 
-        public Contrato CrearContrato(DateTime fechainicio,DateTime fechafin,decimal sueldo, string seniority, int idEmpleado)
+        public Contrato CrearContrato(DateTime fechainicio, DateTime fechafin, decimal sueldo, string seniority, Empleado Empleado)
         {
             using (var context = new CapitalHumanoContext())
             {
-                var createdContrato= new Contrato
+                var createdContrato = new Contrato
                 {
                     FechaFin = fechafin,
                     FechaInicio = fechainicio,
-                    IdEmpleado = idEmpleado,
+                    Empleado = Empleado,
                     Seniority = seniority,
                     Sueldo = sueldo
                 };

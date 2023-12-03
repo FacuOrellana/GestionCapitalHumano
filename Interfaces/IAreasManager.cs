@@ -7,5 +7,7 @@ namespace GestionCapitalHumano.Interfaces
         List<Area> GetAllAreas();
 
         public void crearArea(string descripcion);
+
+        public Area getArea(int id);
     }
 }

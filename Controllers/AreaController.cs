@@ -1,5 +1,6 @@
 ﻿using GestionCapitalHumano.DTOs;
 using GestionCapitalHumano.Interfaces;
+using GestionCapitalHumano.Managers;
 using GestionCapitalHumano.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,5 +38,15 @@ namespace GestionCapitalHumano.Controllers
              _areasManager.crearArea(areaDTO.Descripcion);
             return CreatedAtAction(nameof(createArea), areaDTO.Descripcion);
         }
+
+        [HttpGet("areas/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public IActionResult Get(int id)
+        {
+            return Ok(_areasManager.getArea(id));
+        }
+
+
     }
 }
