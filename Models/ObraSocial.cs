@@ -11,4 +11,5 @@ public partial class ObraSocial
 
     public decimal? Aporte { get; set; }
 
+    public bool Is_Deleted { get; set; }
 }

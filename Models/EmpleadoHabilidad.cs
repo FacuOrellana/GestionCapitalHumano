@@ -11,6 +11,7 @@ public partial class EmpleadoHabilidad
 
     public int? IdHabilidad { get; set; }
 
+    public bool Is_Deleted { get; set; }
     public virtual Empleado? IdEmpleadoNavigation { get; set; }
 
     public virtual Habilidad? IdHabilidadNavigation { get; set; }

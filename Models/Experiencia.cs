@@ -16,4 +16,5 @@ public partial class Experiencia
     public int? IdEmpleado { get; set; }
 
     public int? IdTipoExperiencia { get; set; }
+    public bool Is_Deleted { get; set; }
 }

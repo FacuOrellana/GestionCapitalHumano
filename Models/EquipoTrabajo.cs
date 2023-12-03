@@ -10,4 +10,5 @@ public partial class EquipoTrabajo
     public string? Descripcion { get; set; }
 
     public int? IdDepartamento { get; set; }
+    public bool Is_Deleted { get; set; }
 }

@@ -10,4 +10,5 @@ public partial class Departamento
     public string Descripcion { get; set; }
 
     public int IdArea { get; set; }
+    public bool Is_Deleted { get; set; }
 }

@@ -63,6 +63,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.ToTable("Area");
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Asistencia>(entity =>
@@ -78,6 +79,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.HasOne(d => d.IdEmpleadoNavigation).WithMany(p => p.Asistencia)
                 .HasForeignKey(d => d.IdEmpleado)
                 .HasConstraintName("FK__Asistenci__IdEmp__5CD6CB2B");
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Capacitacion>(entity =>
@@ -88,6 +90,7 @@ public partial class CapitalHumanoContext : DbContext
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
             entity.Property(e => e.Fecha).HasColumnType("datetime");
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Contrato>(entity =>
@@ -102,6 +105,7 @@ public partial class CapitalHumanoContext : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength();
             entity.Property(e => e.Sueldo).HasColumnType("decimal(18, 0)");
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Departamento>(entity =>
@@ -111,6 +115,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.ToTable("Departamento");
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Empleado>(entity =>
@@ -126,6 +131,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.Property(e => e.Direccion).HasMaxLength(50);
             entity.Property(e => e.FechaNacimiento).HasColumnType("datetime");
             entity.Property(e => e.Nombre).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<EmpleadoCapacitacion>(entity =>
@@ -145,6 +151,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.HasOne(d => d.IdEmpleadoNavigation).WithMany(p => p.EmpleadoCapacitacions)
                 .HasForeignKey(d => d.IdEmpleado)
                 .HasConstraintName("FK_Empleado_Capacitacion_Empleado");
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<EmpleadoHabilidad>(entity =>
@@ -164,6 +171,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.HasOne(d => d.IdHabilidadNavigation).WithMany(p => p.EmpleadoHabilidads)
                 .HasForeignKey(d => d.IdHabilidad)
                 .HasConstraintName("FK_Empleado_Habilidad_Habilidad");
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<EquipoTrabajo>(entity =>
@@ -173,6 +181,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.ToTable("EquipoTrabajo");
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Experiencia>(entity =>
@@ -181,6 +190,7 @@ public partial class CapitalHumanoContext : DbContext
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
             entity.Property(e => e.Nombre).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Habilidad>(entity =>
@@ -190,6 +200,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.ToTable("Habilidad");
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<ObraSocial>(entity =>
@@ -200,6 +211,7 @@ public partial class CapitalHumanoContext : DbContext
 
             entity.Property(e => e.Aporte).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<PuestoTrabajo>(entity =>
@@ -221,6 +233,7 @@ public partial class CapitalHumanoContext : DbContext
 
             entity.Property(e => e.Aporte).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<Tarea>(entity =>
@@ -230,6 +243,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.ToTable("Tarea");
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         modelBuilder.Entity<TipoExperiencia>(entity =>
@@ -237,6 +251,7 @@ public partial class CapitalHumanoContext : DbContext
             entity.HasKey(e => e.IdTipoExperiencia);
 
             entity.Property(e => e.Descripcion).HasMaxLength(50);
+            entity.Property(e => e.Is_Deleted).HasColumnType("BIT").IsRequired();
         });
 
         OnModelCreatingPartial(modelBuilder);

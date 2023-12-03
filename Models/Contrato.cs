@@ -16,4 +16,5 @@ public partial class Contrato
     public string Seniority { get; set; }
 
     public int IdEmpleado { get; set; }
+    public bool Is_Deleted { get; set; }
 }

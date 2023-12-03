@@ -14,4 +14,5 @@ public partial class EmpleadoCapacitacion
     public virtual Capacitacion IdCapacitacionNavigation { get; set; }
 
     public virtual Empleado IdEmpleadoNavigation { get; set; }
+    public bool Is_Deleted { get; set; }
 }

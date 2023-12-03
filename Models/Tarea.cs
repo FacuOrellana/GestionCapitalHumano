@@ -10,4 +10,5 @@ public partial class Tarea
     public string? Descripcion { get; set; }
 
     public int? IdPuestoTrabajo { get; set; }
+    public bool Is_Deleted { get; set; }
 }

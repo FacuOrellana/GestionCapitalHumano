@@ -24,6 +24,7 @@ public partial class Empleado
     public virtual Sindicato Sindicato { get; set; }
     public virtual PuestoTrabajo PuestoTrabajo { get; set; }
     public virtual EquipoTrabajo EquipoTrabajo { get; set; }
+    public bool Is_Deleted { get; set; }
 
     public virtual ICollection<Asistencia> Asistencia { get; set; } = new List<Asistencia>();
 

@@ -14,6 +14,7 @@ public partial class Asistencia
     public DateTime HoraSalida { get; set; }
 
     public int IdEmpleado { get; set; }
+    public bool Is_Deleted { get; set; }
 
     public virtual Empleado IdEmpleadoNavigation { get; set; }
 }

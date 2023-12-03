@@ -13,5 +13,6 @@ public partial class Capacitacion
 
     public int DuracionHoras { get; set; }
 
+    public bool Is_Deleted { get; set; }
     public virtual ICollection<EmpleadoCapacitacion> EmpleadoCapacitaciones { get; set; } = new List<EmpleadoCapacitacion>();
 }
