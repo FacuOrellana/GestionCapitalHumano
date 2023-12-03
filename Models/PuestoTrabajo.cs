@@ -11,4 +11,6 @@ public partial class PuestoTrabajo
 
     public string? Descripcion { get; set; }
 
+    public bool Is_Deleted { get; set; }
+
 }

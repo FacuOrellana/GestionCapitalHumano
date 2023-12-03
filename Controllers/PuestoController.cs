@@ -26,17 +26,28 @@ namespace GestionCapitalHumano.Controllers
         [HttpDelete("puestoTrabajo")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Delete(PuestoTrabajo puesto)
+        public IActionResult Delete(int id, PuestoTrabajo puesto)
         {
-            return Ok(_puestoTrabajoManager.deletePuesto(puesto));
+            var result = _puestoTrabajoManager.deletePuesto(id);
+
+            if (result)
+            {
+                return Ok("Soft delete realizado correctamente.");
+            }
+            else
+            {
+                return BadRequest("No se pudo realizar el soft delete.");
+            }
         }
+
+
 
         [HttpPut("puestoTrabajo")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(PuestoTrabajo puesto)
+        public IActionResult Put(int id,PuestoTrabajo puesto)
         {
-            return Ok(_puestoTrabajoManager.editarPuesto(puesto));
+            return Ok(_puestoTrabajoManager.editarPuesto(id,puesto));
         }
 
         [HttpGet("puestoTrabajo/{id}")]
