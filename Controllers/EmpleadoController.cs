@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPost("empleados")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post(Empleado empleado)
+        public IActionResult Post(EmpleadoDTO empleado)
         {
             return Ok(_empleadoManager.crearEmpleado(empleado));
         }

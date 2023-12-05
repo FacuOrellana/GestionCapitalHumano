@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Models;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Interfaces
 {
@@ -6,7 +7,7 @@ namespace GestionCapitalHumano.Interfaces
     {
         public List<Empleado> getEmpleados();
 
-        public Empleado crearEmpleado(Empleado empleado);
+        public Empleado crearEmpleado(EmpleadoDTO empleado);
 
         public Empleado getEmpleado(int id);
 

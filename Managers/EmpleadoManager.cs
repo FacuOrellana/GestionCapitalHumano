@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -18,12 +19,42 @@ namespace GestionCapitalHumano.Managers
                 ToList(); 
         }
 
-        public Empleado crearEmpleado(Empleado empleado)
+        public Empleado crearEmpleado(EmpleadoDTO empleadoDTO)
         {
-            using var context = new CapitalHumanoContext();
-            EntityEntry<Empleado> entityEntry = context.Empleados.Add(empleado);
-            context.SaveChanges();
-            return entityEntry.Entity;
+            using (var context = new CapitalHumanoContext())
+            {
+                try
+                {
+                    // Mapear los datos de EmpleadoDTO a Empleado
+                    Empleado empleado = new Empleado
+                    {
+                        Nombre = empleadoDTO.Nombre,
+                        Apellido = empleadoDTO.Apellido,
+                        Legajo = empleadoDTO.Legajo,
+                        Dni = empleadoDTO.Dni,
+                        Celular = empleadoDTO.Celular,
+                        FechaNacimiento = empleadoDTO.FechaNacimiento,
+                        Direccion = empleadoDTO.Direccion,
+                        Ciudad = empleadoDTO.Ciudad,
+                        ObrasocialIdObraSocial = empleadoDTO.IdObraSocial,
+                        SindicatoIdSindicato = empleadoDTO.IdSindicato,
+                        PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo,
+                        EquipoTrabajoIdEquipoTrabajo = empleadoDTO.IdEquipoTrabajo
+                    };
+
+                    // Agregar el empleado a la base de datos
+                    EntityEntry<Empleado> entityEntry = context.Empleados.Add(empleado);
+                    context.SaveChanges();
+
+                    return entityEntry.Entity;
+                }
+                catch (Exception ex)
+                {
+                    // Manejar la excepción según tus necesidades
+                    Console.WriteLine($"Error al crear empleado: {ex.Message}");
+                    throw; // Puedes manejar la excepción aquí o relanzarla para que la capa superior la maneje
+                }
+            }
         }
 
         public Empleado getEmpleado(int id)

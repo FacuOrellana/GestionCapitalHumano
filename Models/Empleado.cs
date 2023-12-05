@@ -20,6 +20,11 @@ public class Empleado
 
     public string Ciudad { get; set; }
 
+    public int ObrasocialIdObraSocial { get; set; }
+    public int SindicatoIdSindicato { get; set; }
+    public int PuestoTrabajoIdPuestoTrabajo { get; set; }
+    public int EquipoTrabajoIdEquipoTrabajo { get; set; }
+
     public virtual ObraSocial ObraSocial { get; set; }
     public virtual Sindicato Sindicato { get; set; }
     public virtual PuestoTrabajo PuestoTrabajo { get; set; }

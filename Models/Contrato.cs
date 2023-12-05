@@ -9,7 +9,7 @@ public class Contrato
 
     public DateTime FechaInicio { get; set; }
 
-    public DateTime FechaFin { get; set; }
+    public DateTime ? FechaFin  { get; set; }
 
     public decimal Sueldo { get; set; }
 
