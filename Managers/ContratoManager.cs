@@ -13,7 +13,7 @@ namespace GestionCapitalHumano.Managers
         {
             using var context = new CapitalHumanoContext();
             var contratos = context.Contratos.Include(c => c.Empleado).
-                ToList();
+                Where(c=> c.Is_Deleted == false).ToList();
             return contratos;
         }
         public List<Contrato> GetContratosById(int id)
