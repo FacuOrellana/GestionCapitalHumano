@@ -61,9 +61,10 @@ namespace GestionCapitalHumano.Controllers
         [HttpGet("puestoTrabajo")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public IActionResult Get()
+        public ActionResult<List<PuestoTrabajo>> Get()
         {
-            return Ok(_puestoTrabajoManager.GetAllPuestos());
+            var puestos = _puestoTrabajoManager.GetAllPuestos();
+            return puestos;
         }
     }
 }

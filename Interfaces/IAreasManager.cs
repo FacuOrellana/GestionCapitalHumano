@@ -9,5 +9,8 @@ namespace GestionCapitalHumano.Interfaces
         public void crearArea(string descripcion);
 
         public Area getArea(int id);
+
+        public Area editArea(int id, Area area);   
+        public bool deleteArea(int id);
     }
 }

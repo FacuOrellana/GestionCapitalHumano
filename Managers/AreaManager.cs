@@ -10,7 +10,7 @@ namespace GestionCapitalHumano.Managers
         {
             using (var context = new CapitalHumanoContext())
             {
-                return context.Areas.ToList();
+                return context.Areas.Where(e=> e.Is_Deleted == false).ToList();
             }
         }
         public void crearArea(string descripcion) 
@@ -34,6 +34,35 @@ namespace GestionCapitalHumano.Managers
                 }
 
                 return area;
+            }
+        }
+
+        public Area editArea(int id, Area area)
+        {
+            var context = new CapitalHumanoContext();
+            var areaExistente = context.Areas.FirstOrDefault(a => a.IdArea == id);
+            if (areaExistente != null)
+            {
+                areaExistente.Descripcion = area.Descripcion;
+                areaExistente.Is_Deleted = area.Is_Deleted;
+                context.SaveChanges();
+            }
+            return areaExistente;
+        }
+
+        public bool deleteArea(int id)
+        {
+            using var context = new CapitalHumanoContext();
+            var areaExistente = context.Areas.FirstOrDefault(e => e.IdArea == id);
+            if (areaExistente != null)
+            {
+                areaExistente.Is_Deleted = true;
+                context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

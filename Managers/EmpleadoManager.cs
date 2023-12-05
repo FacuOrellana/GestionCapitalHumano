@@ -15,7 +15,7 @@ namespace GestionCapitalHumano.Managers
                 Include(e => e.Sindicato).
                 Include(e => e.PuestoTrabajo).
                 Include(e => e.EquipoTrabajo).
-                ToList(); 
+                Where(e => e.Is_Deleted == false).ToList(); 
         }
 
         public Empleado crearEmpleado(Empleado empleado)

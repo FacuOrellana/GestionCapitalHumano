@@ -9,7 +9,7 @@ namespace GestionCapitalHumano.Managers
         {
             using (var context = new CapitalHumanoContext())
             {
-                return context.Sindicatos.ToList();
+                return context.Sindicatos.Where(e => e.Is_Deleted == false).ToList();
             }
         }
     }
