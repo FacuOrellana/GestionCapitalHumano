@@ -31,7 +31,6 @@ namespace GestionCapitalHumano.Managers
             {
                 obraSocialExistente.Aporte = obraSocial.Aporte;
                 obraSocialExistente.Descripcion = obraSocial.Descripcion;
-                obraSocialExistente.Is_Deleted = obraSocial.Is_Deleted;
                 context.SaveChanges();
                 return obraSocialExistente;
             }

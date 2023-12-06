@@ -39,15 +39,21 @@ namespace GestionCapitalHumano.Managers
 
         public Area editArea(int id, Area area)
         {
-            var context = new CapitalHumanoContext();
-            var areaExistente = context.Areas.FirstOrDefault(a => a.IdArea == id);
-            if (areaExistente != null)
+            using(var context = new CapitalHumanoContext())
             {
-                areaExistente.Descripcion = area.Descripcion;
-                areaExistente.Is_Deleted = area.Is_Deleted;
-                context.SaveChanges();
+                try
+                {
+                    var areaExistente = context.Areas.FirstOrDefault(a => a.IdArea == id);
+                    if (areaExistente != null)
+                    {
+                        areaExistente.Descripcion = area.Descripcion;
+                        context.SaveChanges();
+                    }
+                }catch(Exception ex)
+                {
+
+                }
             }
-            return areaExistente;
         }
 
         public bool deleteArea(int id)
