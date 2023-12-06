@@ -1,4 +1,5 @@
 ﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.DTOs;
 using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ namespace GestionCapitalHumano.Managers
                 return context.PuestoTrabajos.Where(e=> !e.Is_Deleted).ToList();
             }
         }
+        public PuestoTrabajo crearPuesto(PuestoTrabajoDTO puestoDTO)
         public PuestoTrabajo crearPuesto(PuestoTrabajoDTO puestoDTO)
         {
             using var context = new CapitalHumanoContext();
@@ -52,8 +54,30 @@ namespace GestionCapitalHumano.Managers
             }
         }
         public PuestoTrabajo editarPuesto(int id, PuestoTrabajoDTO puesto)
+        public PuestoTrabajo editarPuesto(int id, PuestoTrabajoDTO puesto)
         {
             using var context = new CapitalHumanoContext();
+            try
+            {
+                var puestoExistente = context.PuestoTrabajos.FirstOrDefault(e => e.IdPuestoTrabajo == id);
+                if (puestoExistente != null)
+                {
+                    puestoExistente.Descripcion = puesto.Descripcion;
+                    puestoExistente.Nombre = puesto.Nombre;
+                    context.SaveChanges();
+                    return puestoExistente;
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontro el Puesto de Trabajo con id: " + id);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al editar el puesto de trabajo con id: " + id);
+                throw;
+            }            
             try
             {
                 var puestoExistente = context.PuestoTrabajos.FirstOrDefault(e => e.IdPuestoTrabajo == id);

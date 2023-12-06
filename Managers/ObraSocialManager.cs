@@ -1,4 +1,5 @@
 ﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.DTOs;
 using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 
@@ -14,6 +15,7 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
+        public ObraSocial crearObraSocial(ObraSocialDTO obraSocial)
         public ObraSocial crearObraSocial(ObraSocialDTO obraSocial)
         {
             using (var context = new CapitalHumanoContext())
@@ -38,8 +40,30 @@ namespace GestionCapitalHumano.Managers
         }
 
         public ObraSocial editObraSocial(int id, ObraSocialDTO obraSocial)
+        public ObraSocial editObraSocial(int id, ObraSocialDTO obraSocial)
         {
             var context = new CapitalHumanoContext();
+            try
+            {
+                var obraSocialExistente = context.ObraSociales.FirstOrDefault(e => e.IdObraSocial == id);
+                if (obraSocialExistente != null)
+                {
+                    obraSocialExistente.Aporte = obraSocial.Aporte;
+                    obraSocialExistente.Descripcion = obraSocial.Descripcion;
+                    context.SaveChanges();
+                    return obraSocialExistente;
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontro Obra Social: " + id);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al editar una obra social" +  ex.Message);
+                throw;
+            }
             try
             {
                 var obraSocialExistente = context.ObraSociales.FirstOrDefault(e => e.IdObraSocial == id);

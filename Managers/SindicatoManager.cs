@@ -1,4 +1,5 @@
 ﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.DTOs;
 using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 
@@ -14,6 +15,7 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
+        public Sindicato crearSindicato(SindicatoDTO sindicato)
         public Sindicato crearSindicato(SindicatoDTO sindicato)
         {
             var contexto = new CapitalHumanoContext();
@@ -37,6 +39,7 @@ namespace GestionCapitalHumano.Managers
         }
 
         public Sindicato editarSindicato(int id, SindicatoDTO sindicato)
+        public Sindicato editarSindicato(int id, SindicatoDTO sindicato)
         {
             var context = new CapitalHumanoContext();
             try
@@ -54,6 +57,26 @@ namespace GestionCapitalHumano.Managers
                     Console.WriteLine($"No se encontro el sindicato con id: " + id);
                     return null;
                 }
+            try
+            {
+                var sindicatoExistente = context.Sindicatos.FirstOrDefault(e => e.IdSindicato == id);
+                if (sindicatoExistente != null)
+                {
+                    sindicatoExistente.Aporte = sindicato.Aporte;
+                    sindicatoExistente.Descripcion = sindicato.Descripcion;
+                    context.SaveChanges();
+                    return sindicatoExistente;
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontro el sindicato con id: " + id);
+                    return null;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error al editar el empleado" + ex.Message);
+                throw;
             }
             catch(Exception ex)
             {
