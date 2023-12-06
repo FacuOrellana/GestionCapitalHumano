@@ -36,7 +36,7 @@ namespace GestionCapitalHumano.Managers
             if(equipoExistente != null)
             {
                 equipoExistente.Descripcion = equipoTrabajo.Descripcion;
-                equipoExistente.Is_Deleted = equipoTrabajo.Is_Deleted;
+                equipoExistente.IdDepartamento = equipoTrabajo.IdDepartamento;
                 context.SaveChanges();
                 return equipoExistente;
             }
