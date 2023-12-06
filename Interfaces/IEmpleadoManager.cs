@@ -10,7 +10,7 @@ namespace GestionCapitalHumano.Interfaces
         public Empleado crearEmpleado(EmpleadoDTO empleado);
 
         public Empleado getEmpleado(int id);
-        public Empleado editarEmpleado(EmpleadoDTO empleado);
+        public Empleado editarEmpleado(EmpleadoDTO empleado, int id);
 
     }
 }

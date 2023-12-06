@@ -56,14 +56,14 @@ namespace GestionCapitalHumano.Managers
                 }
             }
         }
-        public Empleado editarEmpleado(EmpleadoDTO empleadoDTO)
+        public Empleado editarEmpleado(EmpleadoDTO empleadoDTO, int id)
         {
             using (var context = new CapitalHumanoContext())
             {
                 try
                 {
                     // Buscar el empleado existente por su Id
-                    Empleado empleadoExistente = context.Empleados.Find(empleadoDTO.Id);
+                    Empleado empleadoExistente = context.Empleados.Find(id);
 
                     if (empleadoExistente != null)
                     {
@@ -89,7 +89,7 @@ namespace GestionCapitalHumano.Managers
                     else
                     {
                         // Manejar el caso en que no se encuentre el empleado
-                        Console.WriteLine($"No se encontró el empleado con Id {empleadoDTO.Id}");
+                        Console.WriteLine($"No se encontró el empleado con Id {id}");
                         return null; // Puedes manejarlo devolviendo null u otro valor según tus necesidades
                     }
                 }
