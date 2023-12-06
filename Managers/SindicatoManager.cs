@@ -1,5 +1,4 @@
-﻿using GestionCapitalHumano.DTOs;
-using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Managers
@@ -14,51 +13,30 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
-        public Sindicato crearSindicato(SindicatoDTO sindicato)
+        public Sindicato crearSindicato(Sindicato sindicato)
         {
             var contexto = new CapitalHumanoContext();
-            try
-            {
-                Sindicato sindicatoNew = new Sindicato
-                {
-                    Descripcion = sindicato.Descripcion,
-                    Aporte = sindicato.Aporte
-                };
-                contexto.Sindicatos.Add(sindicatoNew);
-                contexto.SaveChanges();
-                return sindicatoNew;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al crear Sindicato");
-                throw;
-            }            
+            contexto.Sindicatos.Add(sindicato);
+            contexto.SaveChanges();
+            return sindicato;
         }
 
-        public Sindicato editarSindicato(int id, SindicatoDTO sindicato)
+        public Sindicato editarSindicato(int id, Sindicato sindicato)
         {
             var context = new CapitalHumanoContext();
-            try
+            var sindicatoExistente = context.Sindicatos.FirstOrDefault(e=>e.IdSindicato == id);
+            if(sindicatoExistente != null)
             {
-                var sindicatoExistente = context.Sindicatos.FirstOrDefault(e => e.IdSindicato == id);
-                if (sindicatoExistente != null)
-                {
-                    sindicatoExistente.Aporte = sindicato.Aporte;
-                    sindicatoExistente.Descripcion = sindicato.Descripcion;
-                    context.SaveChanges();
-                    return sindicatoExistente;
-                }
-                else
-                {
-                    Console.WriteLine($"No se encontro el sindicato con id: " + id);
-                    return null;
-                }
+                sindicatoExistente.Aporte = sindicato.Aporte;
+                sindicatoExistente.Descripcion = sindicato.Descripcion;
+                context.SaveChanges();
+                return sindicatoExistente;
             }
-            catch(Exception ex)
+            else
             {
-                Console.WriteLine($"Error al editar el empleado" + ex.Message);
-                throw;
+                return null;
             }
+
         }
 
         public bool deleteSindicato(int id)

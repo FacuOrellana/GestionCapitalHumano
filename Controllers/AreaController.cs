@@ -50,7 +50,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPut("areas/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public IActionResult Edit(int id,AreaDTO area)
+        public IActionResult Edit(int id,Area area)
         {
             return Ok(_areasManager.editArea(id,area));
         }

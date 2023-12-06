@@ -1,5 +1,4 @@
-﻿using GestionCapitalHumano.DTOs;
-using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Managers
@@ -14,52 +13,28 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
-        public ObraSocial crearObraSocial(ObraSocialDTO obraSocial)
+        public ObraSocial crearObraSocial(ObraSocial obraSocial)
         {
             using (var context = new CapitalHumanoContext())
             {
-                try
-                {
-                    ObraSocial obra = new ObraSocial
-                    {
-                        Descripcion = obraSocial.Descripcion,
-                        Aporte = obraSocial.Aporte,
-                    };
-                    context.ObraSociales.Add(obra);
-                    context.SaveChanges();
-                    return obra;
-                }catch (Exception ex)
-                {
-                    Console.WriteLine($"Error al crear ObraSocial");
-                    throw;
-                }                
+                context.ObraSociales.Add(obraSocial);
+                context.SaveChanges();
+                return obraSocial;
             }
         }
 
-        public ObraSocial editObraSocial(int id, ObraSocialDTO obraSocial)
+        public ObraSocial editObraSocial(int id, ObraSocial obraSocial)
         {
             var context = new CapitalHumanoContext();
-            try
+            var obraSocialExistente = context.ObraSociales.FirstOrDefault(e => e.IdObraSocial == id);
+            if(obraSocialExistente != null)
             {
-                var obraSocialExistente = context.ObraSociales.FirstOrDefault(e => e.IdObraSocial == id);
-                if (obraSocialExistente != null)
-                {
-                    obraSocialExistente.Aporte = obraSocial.Aporte;
-                    obraSocialExistente.Descripcion = obraSocial.Descripcion;
-                    context.SaveChanges();
-                    return obraSocialExistente;
-                }
-                else
-                {
-                    Console.WriteLine($"No se encontro Obra Social: " + id);
-                    return null;
-                }
+                obraSocialExistente.Aporte = obraSocial.Aporte;
+                obraSocialExistente.Descripcion = obraSocial.Descripcion;
+                context.SaveChanges();
+                return obraSocialExistente;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al editar una obra social" +  ex.Message);
-                throw;
-            }
+            return obraSocialExistente;
         }
 
         public bool deleteObraSocial(int id)

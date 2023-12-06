@@ -1,5 +1,4 @@
-﻿using GestionCapitalHumano.DTOs;
-using GestionCapitalHumano.Models;
+﻿using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Interfaces
 {
@@ -11,7 +10,7 @@ namespace GestionCapitalHumano.Interfaces
 
         public Area getArea(int id);
 
-        public Area editArea(int id, AreaDTO area);   
+        public Area editArea(int id, Area area);   
         public bool deleteArea(int id);
     }
 }

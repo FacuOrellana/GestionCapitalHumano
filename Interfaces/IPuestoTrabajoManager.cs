@@ -1,14 +1,13 @@
-﻿using GestionCapitalHumano.DTOs;
-using GestionCapitalHumano.Models;
+﻿using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Interfaces
 {
     public interface IPuestoTrabajoManager
     {
         List<PuestoTrabajo> GetAllPuestos();
-        PuestoTrabajo crearPuesto(PuestoTrabajoDTO puesto);
+        PuestoTrabajo crearPuesto(PuestoTrabajo puesto);
         bool deletePuesto(int id);
-        PuestoTrabajo editarPuesto(int id, PuestoTrabajoDTO puesto);
+        PuestoTrabajo editarPuesto(int id, PuestoTrabajo puesto);
         PuestoTrabajo getPuesto(int id);
     }
 }

@@ -1,5 +1,4 @@
-﻿using GestionCapitalHumano.DTOs;
-using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,7 +37,7 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
-        public Area editArea(int id, AreaDTO area)
+        public Area editArea(int id, Area area)
         {
             using(var context = new CapitalHumanoContext())
             {
@@ -50,15 +49,9 @@ namespace GestionCapitalHumano.Managers
                         areaExistente.Descripcion = area.Descripcion;
                         context.SaveChanges();
                     }
-                    else
-                    {
-                        Console.WriteLine($"No se encontró el area con Id {id}");
-                        return null;
-                    }
                 }catch(Exception ex)
                 {
-                    Console.WriteLine($"Error al editar area: {ex.Message}");
-                    throw;
+
                 }
             }
         }
