@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Managers;
 using GestionCapitalHumano.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPost("obrasocial")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post(ObraSocial    obraSocial)
+        public IActionResult Post(ObraSocialDTO    obraSocial)
         {
             return Ok(_obraSocialManager.crearObraSocial(obraSocial));
         }
@@ -26,7 +27,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPut("obrasocial")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(int id,ObraSocial obraSocial)
+        public IActionResult Put(int id,ObraSocialDTO obraSocial)
         {
             return Ok(_obraSocialManager.editObraSocial(id,obraSocial));
         }

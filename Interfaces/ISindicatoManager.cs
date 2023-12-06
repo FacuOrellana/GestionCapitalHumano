@@ -1,12 +1,13 @@
-﻿using GestionCapitalHumano.Models;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Interfaces
 {
     public interface ISindicatoManager
     {
         List<Sindicato> GetAllSindicatos();
-        Sindicato crearSindicato(Sindicato sindicato);
-        Sindicato editarSindicato(int id, Sindicato sindicato);
+        Sindicato crearSindicato(SindicatoDTO sindicato);
+        Sindicato editarSindicato(int id, SindicatoDTO sindicato);
         bool deleteSindicato(int id);
     }
 }

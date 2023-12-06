@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Managers
@@ -7,10 +8,25 @@ namespace GestionCapitalHumano.Managers
     {
         public EquipoTrabajo crearEquipoTrabajo(EquipoTrabajo equipoTrabajo)
         {
-            var context = new CapitalHumanoContext();
-            context.EquipoTrabajos.Add(equipoTrabajo);
-            context.SaveChanges();
-            return equipoTrabajo;
+            using(var context = new CapitalHumanoContext())
+            {
+                try
+                {
+                    EquipoTrabajo equipo = new EquipoTrabajo
+                    {
+                        Descripcion = equipoTrabajo.Descripcion,
+                        IdDepartamento = equipoTrabajo.IdDepartamento
+                    };
+                    context.EquipoTrabajos.Add(equipo);
+                    context.SaveChanges();
+                    return equipoTrabajo;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al crear equipo de trabajo: {ex.Message}");
+                    throw;
+                }
+            }
         }
 
         public bool deleteEquipoTrabajo(int id)
@@ -29,18 +45,29 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
-        public EquipoTrabajo editarEquipoTrabajo(int id, EquipoTrabajo equipoTrabajo)
+        public EquipoTrabajo editarEquipoTrabajo(int id, EquipoTrabajoDTO equipoTrabajo)
         {
             var context = new CapitalHumanoContext();
-            var equipoExistente = context.EquipoTrabajos.FirstOrDefault(e => e.IdEquipoTrabajo == id);
-            if(equipoExistente != null)
+            try
             {
-                equipoExistente.Descripcion = equipoTrabajo.Descripcion;
-                equipoExistente.IdDepartamento = equipoTrabajo.IdDepartamento;
-                context.SaveChanges();
-                return equipoExistente;
+                var equipoExistente = context.EquipoTrabajos.FirstOrDefault(e => e.IdEquipoTrabajo == id);
+                if (equipoExistente != null)
+                {
+                    equipoExistente.Descripcion = equipoTrabajo.Descripcion;
+                    equipoExistente.IdDepartamento = equipoTrabajo.IdDepartamento;
+                    context.SaveChanges();
+                    return equipoExistente;
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontro el equipo:" + id);
+                    return null;
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine($"Error al editar un equipo de trabajo:" + ex.Message);
+                throw;
             }
-            return null;
         }
 
         public List<EquipoTrabajo> GetAllEquipoTrabajo()

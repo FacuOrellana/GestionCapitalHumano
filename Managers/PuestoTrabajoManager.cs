@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -14,12 +15,24 @@ namespace GestionCapitalHumano.Managers
                 return context.PuestoTrabajos.Where(e=> !e.Is_Deleted).ToList();
             }
         }
-        public PuestoTrabajo crearPuesto(PuestoTrabajo puesto)
+        public PuestoTrabajo crearPuesto(PuestoTrabajoDTO puestoDTO)
         {
             using var context = new CapitalHumanoContext();
-            EntityEntry<PuestoTrabajo> entityEntry = context.PuestoTrabajos.Add(puesto);
-            context.SaveChanges();
-            return entityEntry.Entity;
+            try
+            {
+                PuestoTrabajo puesto = new PuestoTrabajo
+                {
+                    Descripcion = puestoDTO.Descripcion,
+                    Nombre = puestoDTO.Nombre
+                };
+                EntityEntry<PuestoTrabajo> entityEntry = context.PuestoTrabajos.Add(puesto);
+                context.SaveChanges();
+                return entityEntry.Entity;
+            }catch (Exception ex)
+            {
+                Console.WriteLine($"Error al crear Puesto Trabajo " + ex.Message);
+                throw;
+            }            
         }
 
         public bool deletePuesto(int id)
@@ -37,18 +50,30 @@ namespace GestionCapitalHumano.Managers
                 return false;
             }
         }
-        public PuestoTrabajo editarPuesto(int id, PuestoTrabajo puesto)
+        public PuestoTrabajo editarPuesto(int id, PuestoTrabajoDTO puesto)
         {
             using var context = new CapitalHumanoContext();
-            var puestoExistente = context.PuestoTrabajos.FirstOrDefault(e => e.IdPuestoTrabajo == id);
-            if(puestoExistente != null)
+            try
             {
-                puestoExistente.Descripcion = puesto.Descripcion;
-                puestoExistente.Nombre = puesto.Nombre;
-                puestoExistente.Is_Deleted = puesto.Is_Deleted;
-                context.SaveChanges();
+                var puestoExistente = context.PuestoTrabajos.FirstOrDefault(e => e.IdPuestoTrabajo == id);
+                if (puestoExistente != null)
+                {
+                    puestoExistente.Descripcion = puesto.Descripcion;
+                    puestoExistente.Nombre = puesto.Nombre;
+                    context.SaveChanges();
+                    return puestoExistente;
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontro el Puesto de Trabajo con id: " + id);
+                    return null;
+                }
             }
-            return puestoExistente;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al editar el puesto de trabajo con id: " + id);
+                throw;
+            }            
         }
 
         public PuestoTrabajo getPuesto(int id)

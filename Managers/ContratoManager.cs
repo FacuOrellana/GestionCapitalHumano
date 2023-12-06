@@ -43,21 +43,32 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
-        public Contrato editarContrato(int id, Contrato contrato)
+        public Contrato editarContrato(int id, ContratoDTO contrato)
         {
-            var context = new CapitalHumanoContext();
-            var contratoExistente = context.Contratos.FirstOrDefault(e=>e.IdContrato == id);
-            if(contratoExistente != null)
+            using (var context = new CapitalHumanoContext())
             {
-                contratoExistente.Sueldo = contrato.Sueldo;
-                contratoExistente.Seniority = contrato.Seniority;
-                contratoExistente.FechaFin = contrato.FechaFin;
-                context.SaveChanges();
-                return contratoExistente;
-            }
-            else
-            {
-                return null;
+                try
+                {
+                    var contratoExistente = context.Contratos.FirstOrDefault(e => e.IdContrato == id);
+                    if (contratoExistente != null)
+                    {
+                        contratoExistente.Sueldo = contrato.Sueldo;
+                        contratoExistente.Seniority = contrato.Seniority;
+                        contratoExistente.FechaFin = contrato.FechaFin;
+                        context.SaveChanges();
+                        return contratoExistente;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"No se encontró el empleado con Id {id}");
+                        return null;
+                    }
+                }catch(Exception ex)
+                {
+                    Console.WriteLine($"Error al editar Contrato: {ex.Message}");
+                    throw;
+                }
+                
             }
         }
 

@@ -19,7 +19,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPost("sindicato")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post(Sindicato sindicato)
+        public IActionResult Post(SindicatoDTO sindicato)
         {
             return Ok(_sindicatoManager.crearSindicato(sindicato));
         }
@@ -27,7 +27,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPut("sindicato/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(int id, Sindicato sindicato)
+        public IActionResult Put(int id, SindicatoDTO sindicato)
         {
             return Ok(_sindicatoManager.editarSindicato(id,sindicato));
         }
