@@ -19,7 +19,7 @@ namespace GestionCapitalHumano.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult Post(EquipoTrabajo equipo)
         {
-            return Ok(_equipoTrabajoManager.crear);
+            return Ok(_equipoTrabajoManager.crearEquipoTrabajo(equipo));
         }
     }
 }

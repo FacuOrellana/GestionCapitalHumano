@@ -25,6 +25,13 @@ namespace GestionCapitalHumano.Controllers
             return Ok(_empleadoManager.crearEmpleado(empleado));
         }
 
+        [HttpPut("empleados")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public IActionResult Put(EmpleadoDTO empleado)
+        {
+            return Ok(_empleadoManager.editarEmpleado(empleado));
+        }
         [HttpGet("empleados/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
