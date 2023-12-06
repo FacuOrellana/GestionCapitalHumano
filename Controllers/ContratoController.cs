@@ -53,5 +53,30 @@ namespace GestionCapitalHumano.Controllers
 
         }
 
+        [HttpPut("contratos/{id}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Put(int id, Contrato contrato)
+        {
+            return Ok(_contratoManager.editarContrato(id, contrato));
+        }
+
+        [HttpDelete("contratos/{id}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Delete(int id)
+        {
+            var result = _contratoManager.;
+            if(result == true)
+            {
+                return Ok("Se realizo el soft delete correctamente");
+            }
+            else
+            {
+                return BadRequest("No se realizo el soft delete correctamente");
+            }
+
+        }
+
     }
 }

@@ -42,5 +42,39 @@ namespace GestionCapitalHumano.Managers
                 return createdContrato;
             }
         }
+
+        public Contrato editarContrato(int id, Contrato contrato)
+        {
+            var context = new CapitalHumanoContext();
+            var contratoExistente = context.Contratos.FirstOrDefault(e=>e.IdContrato == id);
+            if(contratoExistente != null)
+            {
+                contratoExistente.Sueldo = contrato.Sueldo;
+                contratoExistente.Seniority = contrato.Seniority;
+                contratoExistente.FechaFin = contrato.FechaFin;
+                context.SaveChanges();
+                return contratoExistente;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool deleteContrato(int id)
+        {
+            var context = new CapitalHumanoContext();
+            var contratoExistente = (context.Contratos.FirstOrDefault(e=>e.IdContrato==id));
+            if(contratoExistente != null)
+            {
+                contratoExistente.Is_Deleted = true;
+                context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
