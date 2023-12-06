@@ -3,8 +3,6 @@ using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
 
 namespace GestionCapitalHumano.Managers
 {
@@ -102,38 +100,6 @@ namespace GestionCapitalHumano.Managers
                     throw; // Puedes manejar la excepción aquí o relanzarla para que la capa superior la maneje
                 }
             }
-        }
-
-        public void deleteEmpleado(int id)
-        {
-            using (var context = new CapitalHumanoContext())
-            {
-                try
-                {
-                    // Buscar el empleado existente por su Id
-                    Empleado empleadoExistente = context.Empleados.Find(id);
-
-                    if (empleadoExistente != null)
-                    {
-                        // Actualizar las propiedades del empleado con los valores proporcionados en empleadoDTO
-                        empleadoExistente.Is_Deleted = true;
-                        // Guardar los cambios en la base de datos
-                        context.SaveChanges();
-                    }
-                    else
-                    {
-                        // Manejar el caso en que no se encuentre el empleado
-                        Console.WriteLine($"No se encontró el empleado con Id {id}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Manejar la excepción según tus necesidades
-                    Console.WriteLine($"Error al editar empleado: {ex.Message}");
-                    throw; // Puedes manejar la excepción aquí o relanzarla para que la capa superior la maneje
-                }
-            }
-
         }
 
         public Empleado getEmpleado(int id)

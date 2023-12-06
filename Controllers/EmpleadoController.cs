@@ -47,14 +47,5 @@ namespace GestionCapitalHumano.Controllers
         {
             return Ok(_empleadoManager.getEmpleados());
         }
-
-        [HttpDelete("empleados/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public IActionResult Delete(int id)
-        {
-            _empleadoManager.deleteEmpleado(id);
-            return Ok("Empleado eliminado con exito!");
-        }
     }
 }
