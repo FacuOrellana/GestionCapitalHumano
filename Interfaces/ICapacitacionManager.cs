@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Models;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Models;
 
 namespace GestionCapitalHumano.Interfaces
 {
@@ -10,8 +11,8 @@ namespace GestionCapitalHumano.Interfaces
 
         bool deleteCapacitacion(int id);
 
-        Capacitacion editCapacitacion(int id, Capacitacion capacitacion);
+        Capacitacion editCapacitacion(int id, CapacitacionDTO capacitacion);
 
-        Capacitacion crearCapacitacion(Capacitacion capacitacion);
+        Capacitacion crearCapacitacion(CapacitacionDTO capacitacion);
     }
 }

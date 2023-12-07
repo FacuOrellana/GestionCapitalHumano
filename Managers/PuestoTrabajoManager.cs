@@ -23,7 +23,8 @@ namespace GestionCapitalHumano.Managers
                 PuestoTrabajo puesto = new PuestoTrabajo
                 {
                     Descripcion = puestoDTO.Descripcion,
-                    Nombre = puestoDTO.Nombre
+                    Nombre = puestoDTO.Nombre,
+                    Is_Deleted = false
                 };
                 EntityEntry<PuestoTrabajo> entityEntry = context.PuestoTrabajos.Add(puesto);
                 context.SaveChanges();

@@ -22,7 +22,8 @@ namespace GestionCapitalHumano.Managers
                 Sindicato sindicatoNew = new Sindicato
                 {
                     Descripcion = sindicato.Descripcion,
-                    Aporte = sindicato.Aporte
+                    Aporte = sindicato.Aporte,
+                    Is_Deleted = false
                 };
                 contexto.Sindicatos.Add(sindicatoNew);
                 contexto.SaveChanges();
@@ -30,7 +31,7 @@ namespace GestionCapitalHumano.Managers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al crear Sindicato");
+                Console.WriteLine($"Error al crear Sindicato: "+ex.Message);
                 throw;
             }            
         }

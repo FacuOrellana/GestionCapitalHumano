@@ -24,6 +24,7 @@ namespace GestionCapitalHumano.Managers
                     {
                         Descripcion = obraSocial.Descripcion,
                         Aporte = obraSocial.Aporte,
+                        Is_Deleted = false
                     };
                     context.ObraSociales.Add(obra);
                     context.SaveChanges();
