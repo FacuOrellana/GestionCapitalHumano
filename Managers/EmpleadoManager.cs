@@ -38,6 +38,7 @@ namespace GestionCapitalHumano.Managers
                         FechaNacimiento = empleadoDTO.FechaNacimiento,
                         Direccion = empleadoDTO.Direccion,
                         Ciudad = empleadoDTO.Ciudad,
+                        Email = empleadoDTO.Email,
                         ObrasocialIdObraSocial = empleadoDTO.IdObraSocial,
                         SindicatoIdSindicato = empleadoDTO.IdSindicato,
                         PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo,

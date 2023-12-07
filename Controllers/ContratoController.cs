@@ -56,7 +56,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPut("contratos/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(int id, Contrato contrato)
+        public IActionResult Put(int id, ContratoDTO contrato)
         {
             return Ok(_contratoManager.editarContrato(id, contrato));
         }
@@ -66,7 +66,7 @@ namespace GestionCapitalHumano.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Delete(int id)
         {
-            var result = _contratoManager.;
+            var result = _contratoManager.deleteContrato(id);
             if(result == true)
             {
                 return Ok("Se realizo el soft delete correctamente");
