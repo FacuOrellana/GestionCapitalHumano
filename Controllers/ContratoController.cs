@@ -56,7 +56,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPut("contratos/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(int id, Contrato contrato)
+        public IActionResult Put(int id, ContratoDTO contrato)
         {
             return Ok(_contratoManager.editarContrato(id, contrato));
         }

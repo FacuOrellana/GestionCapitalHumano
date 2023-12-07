@@ -6,7 +6,7 @@ namespace GestionCapitalHumano.Managers
 {
     public class EquipoTrabajoManager: IEquipoTrabajoManager
     {
-        public EquipoTrabajo crearEquipoTrabajo(EquipoTrabajo equipoTrabajo)
+        public EquipoTrabajo crearEquipoTrabajo(EquipoTrabajoDTO equipoTrabajo)
         {
             using(var context = new CapitalHumanoContext())
             {
@@ -19,7 +19,7 @@ namespace GestionCapitalHumano.Managers
                     };
                     context.EquipoTrabajos.Add(equipo);
                     context.SaveChanges();
-                    return equipoTrabajo;
+                    return equipo;
                 }
                 catch (Exception ex)
                 {
