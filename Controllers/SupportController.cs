@@ -14,15 +14,18 @@ namespace GestionCapitalHumano.Controllers
         private readonly IEquipoTrabajoManager _equipoTrabajoManager;
         private readonly ISindicatoManager _sindicatoManager;
         private readonly IPuestoTrabajoManager _puestoTrabajoManager;
+        private readonly IDepartamentoManager _departamentoManager;
 
         public SupportController(
             IAreasManager areasManager,
             IObraSocialManager obraSocialManager,
             IEquipoTrabajoManager equipoTrabajoManager,
             ISindicatoManager sindicatoManager,
-            IPuestoTrabajoManager puestoTrabajoManager
+            IPuestoTrabajoManager puestoTrabajoManager,
+            IDepartamentoManager departamentoManager
             )
         {
+            _departamentoManager = departamentoManager;
             _areasManager = areasManager;
             _obraSocialManager = obraSocialManager;
             _equipoTrabajoManager = equipoTrabajoManager;
@@ -97,6 +100,20 @@ namespace GestionCapitalHumano.Controllers
         {
             var puestos = _puestoTrabajoManager.GetAllPuestos();
             return puestos;
+
+        }
+
+        /// <summary>
+        /// Get all departamentos 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("departamentos")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public ActionResult<List<Departamento>> GetAllDepartamentos()
+        {
+            var departamentos = _departamentoManager.GetAllDepartamentos();
+            return departamentos;
 
         }
 

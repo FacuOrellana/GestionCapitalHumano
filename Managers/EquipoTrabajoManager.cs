@@ -49,26 +49,15 @@ namespace GestionCapitalHumano.Managers
         public EquipoTrabajo editarEquipoTrabajo(int id, EquipoTrabajoDTO equipoTrabajo)
         {
             var context = new CapitalHumanoContext();
-            try
+            var equipoExistente = context.EquipoTrabajos.FirstOrDefault(e => e.IdEquipoTrabajo == id);
+            if(equipoExistente != null)
             {
-                var equipoExistente = context.EquipoTrabajos.FirstOrDefault(e => e.IdEquipoTrabajo == id);
-                if (equipoExistente != null)
-                {
-                    equipoExistente.Descripcion = equipoTrabajo.Descripcion;
-                    equipoExistente.IdDepartamento = equipoTrabajo.IdDepartamento;
-                    context.SaveChanges();
-                    return equipoExistente;
-                }
-                else
-                {
-                    Console.WriteLine($"No se encontro el equipo:" + id);
-                    return null;
-                }
-            }catch(Exception ex)
-            {
-                Console.WriteLine($"Error al editar un equipo de trabajo:" + ex.Message);
-                throw;
+                equipoExistente.Descripcion = equipoTrabajo.Descripcion;
+                equipoExistente.IdDepartamento = equipoTrabajo.IdDepartamento;
+                context.SaveChanges();
+                return equipoExistente;
             }
+            return null;
         }
 
         public List<EquipoTrabajo> GetAllEquipoTrabajo()

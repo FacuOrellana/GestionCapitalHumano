@@ -56,14 +56,9 @@ namespace GestionCapitalHumano.Managers
                         Console.WriteLine($"No se encontró el area con Id {id}");
                         return null;
                     }
-                    else
-                    {
-                        Console.WriteLine($"No se encontró el area con Id {id}");
-                        return null;
-                    }
                 }catch(Exception ex)
                 {
-                    Console.WriteLine($"Error al editar area: {ex.Message}");
+                    Console.WriteLine($"No se encontró el area con Id {id}");
                     throw;
                 }
             }

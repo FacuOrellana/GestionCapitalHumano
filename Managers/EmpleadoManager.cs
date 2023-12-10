@@ -3,8 +3,6 @@ using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
 
 namespace GestionCapitalHumano.Managers
 {
@@ -21,35 +19,47 @@ namespace GestionCapitalHumano.Managers
                 Where(e => e.Is_Deleted == false).ToList(); 
         }
 
-        public Empleado crearEmpleado(EmpleadoDTO empleadoDTO)
+        public String crearEmpleado(EmpleadoDTO empleadoDTO)
         {
             using (var context = new CapitalHumanoContext())
             {
                 try
                 {
-                    // Mapear los datos de EmpleadoDTO a Empleado
-                    Empleado empleado = new Empleado
+
+                    var checkEmpleado = context.Empleados.FirstOrDefault(e => e.Dni == empleadoDTO.Dni || e.Legajo== empleadoDTO.Legajo );
+                    if (checkEmpleado == null)
                     {
-                        Nombre = empleadoDTO.Nombre,
-                        Apellido = empleadoDTO.Apellido,
-                        Legajo = empleadoDTO.Legajo,
-                        Dni = empleadoDTO.Dni,
-                        Celular = empleadoDTO.Celular,
-                        FechaNacimiento = empleadoDTO.FechaNacimiento,
-                        Direccion = empleadoDTO.Direccion,
-                        Ciudad = empleadoDTO.Ciudad,
-                        Email = empleadoDTO.Email,
-                        ObrasocialIdObraSocial = empleadoDTO.IdObraSocial,
-                        SindicatoIdSindicato = empleadoDTO.IdSindicato,
-                        PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo,
-                        EquipoTrabajoIdEquipoTrabajo = empleadoDTO.IdEquipoTrabajo
-                    };
+                        // Mapear los datos de EmpleadoDTO a Empleado
+                        Empleado empleado = new Empleado
+                        {
+                            Nombre = empleadoDTO.Nombre,
+                            Apellido = empleadoDTO.Apellido,
+                            Legajo = empleadoDTO.Legajo,
+                            Dni = empleadoDTO.Dni,
+                            Celular = empleadoDTO.Celular,
+                            FechaNacimiento = empleadoDTO.FechaNacimiento,
+                            Direccion = empleadoDTO.Direccion,
+                            Ciudad = empleadoDTO.Ciudad,
+                            Email = empleadoDTO.Email,
+                            ObrasocialIdObraSocial = empleadoDTO.IdObraSocial,
+                            SindicatoIdSindicato = empleadoDTO.IdSindicato,
+                            PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo,
+                            EquipoTrabajoIdEquipoTrabajo = empleadoDTO.IdEquipoTrabajo
+                        };
 
-                    // Agregar el empleado a la base de datos
-                    EntityEntry<Empleado> entityEntry = context.Empleados.Add(empleado);
-                    context.SaveChanges();
+                        // Agregar el empleado a la base de datos
+                        EntityEntry<Empleado> entityEntry = context.Empleados.Add(empleado);
+                        context.SaveChanges();
+                        String message = "Empleado registrado con exito!.";
+                        return message;
+                    }
+                    else
+                    {
+                        String message = "Ya existe un empleado con ese DNI o Legajo.";
+                        return  message;
+                    }
 
-                    return entityEntry.Entity;
+                  
                 }
                 catch (Exception ex)
                 {
@@ -104,38 +114,6 @@ namespace GestionCapitalHumano.Managers
                     throw; // Puedes manejar la excepción aquí o relanzarla para que la capa superior la maneje
                 }
             }
-        }
-
-        public void deleteEmpleado(int id)
-        {
-            using (var context = new CapitalHumanoContext())
-            {
-                try
-                {
-                    // Buscar el empleado existente por su Id
-                    Empleado empleadoExistente = context.Empleados.Find(id);
-
-                    if (empleadoExistente != null)
-                    {
-                        // Actualizar las propiedades del empleado con los valores proporcionados en empleadoDTO
-                        empleadoExistente.Is_Deleted = true;
-                        // Guardar los cambios en la base de datos
-                        context.SaveChanges();
-                    }
-                    else
-                    {
-                        // Manejar el caso en que no se encuentre el empleado
-                        Console.WriteLine($"No se encontró el empleado con Id {id}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Manejar la excepción según tus necesidades
-                    Console.WriteLine($"Error al editar empleado: {ex.Message}");
-                    throw; // Puedes manejar la excepción aquí o relanzarla para que la capa superior la maneje
-                }
-            }
-
         }
 
         public Empleado getEmpleado(int id)

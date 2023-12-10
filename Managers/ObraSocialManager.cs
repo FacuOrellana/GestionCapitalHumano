@@ -1,5 +1,4 @@
 ﻿using GestionCapitalHumano.DTOs;
-using GestionCapitalHumano.DTOs;
 using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
 
@@ -15,7 +14,6 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
-        public ObraSocial crearObraSocial(ObraSocialDTO obraSocial)
         public ObraSocial crearObraSocial(ObraSocialDTO obraSocial)
         {
             using (var context = new CapitalHumanoContext())
@@ -39,7 +37,6 @@ namespace GestionCapitalHumano.Managers
             }
         }
 
-        public ObraSocial editObraSocial(int id, ObraSocialDTO obraSocial)
         public ObraSocial editObraSocial(int id, ObraSocialDTO obraSocial)
         {
             var context = new CapitalHumanoContext();
