@@ -13,6 +13,7 @@ namespace GestionCapitalHumano.DTOs
         public string Celular { get; set; }
         public string Email { get; set; }
 
+
         public DateTime FechaNacimiento { get; set; }
 
         public string Direccion { get; set; }

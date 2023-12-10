@@ -6,5 +6,6 @@
         public string? Descripcion { get; set; }
 
         public decimal? Aporte { get; set; }
+
     }
 }

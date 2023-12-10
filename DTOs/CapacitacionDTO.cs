@@ -10,5 +10,7 @@
         public int DuracionHoras { get; set; }
 
         public bool Is_Deleted { get; set; }
+
+
     }
 }

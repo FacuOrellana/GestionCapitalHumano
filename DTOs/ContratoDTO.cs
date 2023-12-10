@@ -13,5 +13,6 @@ namespace GestionCapitalHumano.DTOs
         public string Seniority { get; set; }
 
         public Empleado Empleado{ get; set; }
+
     }
 }
