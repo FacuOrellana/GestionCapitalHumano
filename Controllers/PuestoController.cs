@@ -1,4 +1,5 @@
-﻿using GestionCapitalHumano.Interfaces;
+﻿using GestionCapitalHumano.DTOs;
+using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Managers;
 using GestionCapitalHumano.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPost("puestosTrabajo")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post(PuestoTrabajo puesto)
+        public IActionResult Post(PuestoTrabajoDTO puesto)
         {
             return Ok(_puestoTrabajoManager.crearPuesto(puesto));
         }       
@@ -45,7 +46,7 @@ namespace GestionCapitalHumano.Controllers
         [HttpPut("puestoTrabajo")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Put(int id,PuestoTrabajo puesto)
+        public IActionResult Put(int id,PuestoTrabajoDTO puesto)
         {
             return Ok(_puestoTrabajoManager.editarPuesto(id,puesto));
         }

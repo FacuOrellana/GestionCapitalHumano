@@ -17,9 +17,22 @@ namespace GestionCapitalHumano.Managers
         {
             using (var context = new CapitalHumanoContext())
             {
-                context.ObraSociales.Add(obraSocial);
-                context.SaveChanges();
-                return obraSocial;
+                try
+                {
+                    ObraSocial obra = new ObraSocial
+                    {
+                        Descripcion = obraSocial.Descripcion,
+                        Aporte = obraSocial.Aporte,
+                        Is_Deleted = false
+                    };
+                    context.ObraSociales.Add(obra);
+                    context.SaveChanges();
+                    return obra;
+                }catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al crear ObraSocial");
+                    throw;
+                }                
             }
         }
 

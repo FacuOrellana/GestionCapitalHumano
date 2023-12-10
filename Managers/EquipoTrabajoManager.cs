@@ -5,12 +5,28 @@ namespace GestionCapitalHumano.Managers
 {
     public class EquipoTrabajoManager: IEquipoTrabajoManager
     {
-        public EquipoTrabajo crearEquipoTrabajo(EquipoTrabajo equipoTrabajo)
+        public EquipoTrabajo crearEquipoTrabajo(EquipoTrabajoDTO equipoTrabajo)
         {
-            var context = new CapitalHumanoContext();
-            context.EquipoTrabajos.Add(equipoTrabajo);
-            context.SaveChanges();
-            return equipoTrabajo;
+            using(var context = new CapitalHumanoContext())
+            {
+                try
+                {
+                    EquipoTrabajo equipo = new EquipoTrabajo
+                    {
+                        Descripcion = equipoTrabajo.Descripcion,
+                        IdDepartamento = equipoTrabajo.IdDepartamento,
+                        Is_Deleted = false,
+                    };
+                    context.EquipoTrabajos.Add(equipo);
+                    context.SaveChanges();
+                    return equipo;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al crear equipo de trabajo: {ex.Message}");
+                    throw;
+                }
+            }
         }
 
         public bool deleteEquipoTrabajo(int id)

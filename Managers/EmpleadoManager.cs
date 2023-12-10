@@ -36,6 +36,7 @@ namespace GestionCapitalHumano.Managers
                         FechaNacimiento = empleadoDTO.FechaNacimiento,
                         Direccion = empleadoDTO.Direccion,
                         Ciudad = empleadoDTO.Ciudad,
+                        Email = empleadoDTO.Email,
                         ObrasocialIdObraSocial = empleadoDTO.IdObraSocial,
                         SindicatoIdSindicato = empleadoDTO.IdSindicato,
                         PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo,
@@ -76,6 +77,7 @@ namespace GestionCapitalHumano.Managers
                         empleadoExistente.FechaNacimiento = empleadoDTO.FechaNacimiento;
                         empleadoExistente.Direccion = empleadoDTO.Direccion;
                         empleadoExistente.Ciudad = empleadoDTO.Ciudad;
+                        empleadoExistente.Email = empleadoDTO.Email;
                         empleadoExistente.ObrasocialIdObraSocial = empleadoDTO.IdObraSocial;
                         empleadoExistente.SindicatoIdSindicato = empleadoDTO.IdSindicato;
                         empleadoExistente.PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo;

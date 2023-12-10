@@ -48,6 +48,7 @@ namespace GestionCapitalHumano.Managers
                     {
                         areaExistente.Descripcion = area.Descripcion;
                         context.SaveChanges();
+                        return areaExistente;
                     }
                 }catch(Exception ex)
                 {

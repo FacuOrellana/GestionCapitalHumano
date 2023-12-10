@@ -17,9 +17,22 @@ namespace GestionCapitalHumano.Managers
         public PuestoTrabajo crearPuesto(PuestoTrabajo puesto)
         {
             using var context = new CapitalHumanoContext();
-            EntityEntry<PuestoTrabajo> entityEntry = context.PuestoTrabajos.Add(puesto);
-            context.SaveChanges();
-            return entityEntry.Entity;
+            try
+            {
+                PuestoTrabajo puesto = new PuestoTrabajo
+                {
+                    Descripcion = puestoDTO.Descripcion,
+                    Nombre = puestoDTO.Nombre,
+                    Is_Deleted = false
+                };
+                EntityEntry<PuestoTrabajo> entityEntry = context.PuestoTrabajos.Add(puesto);
+                context.SaveChanges();
+                return entityEntry.Entity;
+            }catch (Exception ex)
+            {
+                Console.WriteLine($"Error al crear Puesto Trabajo " + ex.Message);
+                throw;
+            }            
         }
 
         public bool deletePuesto(int id)

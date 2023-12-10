@@ -16,9 +16,23 @@ namespace GestionCapitalHumano.Managers
         public Sindicato crearSindicato(Sindicato sindicato)
         {
             var contexto = new CapitalHumanoContext();
-            contexto.Sindicatos.Add(sindicato);
-            contexto.SaveChanges();
-            return sindicato;
+            try
+            {
+                Sindicato sindicatoNew = new Sindicato
+                {
+                    Descripcion = sindicato.Descripcion,
+                    Aporte = sindicato.Aporte,
+                    Is_Deleted = false
+                };
+                contexto.Sindicatos.Add(sindicatoNew);
+                contexto.SaveChanges();
+                return sindicatoNew;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al crear Sindicato: "+ex.Message);
+                throw;
+            }            
         }
 
         public Sindicato editarSindicato(int id, Sindicato sindicato)

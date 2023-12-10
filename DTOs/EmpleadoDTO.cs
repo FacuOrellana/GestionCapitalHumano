@@ -11,6 +11,7 @@ namespace GestionCapitalHumano.DTOs
         public int Legajo { get; set; }
         public int Dni { get; set; }
         public string Celular { get; set; }
+        public string Email { get; set; }
 
         public DateTime FechaNacimiento { get; set; }
 
