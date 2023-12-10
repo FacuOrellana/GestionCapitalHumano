@@ -16,6 +16,7 @@ public class Contrato
     public string Seniority { get; set; }
 
     public bool Is_Deleted { get; set; }
+    public int EmpleadoIdEmpleado { get; set; }
 
     public virtual Empleado Empleado { get; set; }
 }

@@ -13,19 +13,18 @@ namespace GestionCapitalHumano.Managers
         {
             using var context = new CapitalHumanoContext();
             var contratos = context.Contratos.Include(c => c.Empleado).
-                Where(c=> c.Is_Deleted == false).ToList();
+                Where(c => c.Is_Deleted == false).ToList();
             return contratos;
         }
-        public List<Contrato> GetContratosById(int id)
+        public Contrato GetContratoById(int id)
         {
             using (var context = new CapitalHumanoContext())
             {
-                return context.Contratos.
-                    Where(c => c.Empleado.IdEmpleado == id).ToList();
+                return context.Contratos.Include(c => c.Empleado).FirstOrDefault(c => c.IdContrato == id);
             }
         }
 
-        public Contrato CrearContrato(DateTime fechainicio, DateTime fechafin, decimal sueldo, string seniority, Empleado Empleado)
+        public Contrato CrearContrato(DateTime fechainicio, DateTime fechafin, decimal sueldo, string seniority, int Empleado)
         {
             using (var context = new CapitalHumanoContext())
             {
@@ -33,7 +32,7 @@ namespace GestionCapitalHumano.Managers
                 {
                     FechaFin = fechafin,
                     FechaInicio = fechainicio,
-                    Empleado = Empleado,
+                    EmpleadoIdEmpleado = Empleado,
                     Seniority = seniority,
                     Sueldo = sueldo
                 };
@@ -46,26 +45,35 @@ namespace GestionCapitalHumano.Managers
         public Contrato editarContrato(int id, ContratoDTO contrato)
         {
             var context = new CapitalHumanoContext();
-            var contratoExistente = context.Contratos.FirstOrDefault(e=>e.IdContrato == id);
-            if(contratoExistente != null)
+            try
             {
-                contratoExistente.Sueldo = contrato.Sueldo;
-                contratoExistente.Seniority = contrato.Seniority;
-                contratoExistente.FechaFin = contrato.FechaFin;
-                context.SaveChanges();
-                return contratoExistente;
+                var contratoExistente = context.Contratos.FirstOrDefault(e => e.IdContrato == id);
+                if (contratoExistente != null)
+                {
+                    contratoExistente.Sueldo = contrato.Sueldo;
+                    contratoExistente.Seniority = contrato.Seniority;
+                    contratoExistente.FechaFin = contrato.FechaFin;
+                    context.SaveChanges();
+                    return contratoExistente;
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró el contrato con Id {id}");
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+                Console.WriteLine($"Error al editar Contrato: {ex.Message}");
+                throw;
             }
         }
 
         public bool deleteContrato(int id)
         {
             var context = new CapitalHumanoContext();
-            var contratoExistente = (context.Contratos.FirstOrDefault(e=>e.IdContrato==id));
-            if(contratoExistente != null)
+            var contratoExistente = (context.Contratos.FirstOrDefault(e => e.IdContrato == id));
+            if (contratoExistente != null)
             {
                 contratoExistente.Is_Deleted = true;
                 context.SaveChanges();

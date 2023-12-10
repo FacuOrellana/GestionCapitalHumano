@@ -30,10 +30,10 @@ namespace GestionCapitalHumano.Controllers
         [HttpGet("contratos/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public ActionResult<List<Contrato>> GetContratosById(int Id)
+        public ActionResult<Contrato> GetContratosById(int Id)
         {
-            var contratos = _contratoManager.GetContratosById(Id);
-            return contratos;
+            var contrato = _contratoManager.GetContratoById(Id);
+            return contrato;
 
         }
 
@@ -48,7 +48,7 @@ namespace GestionCapitalHumano.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Contrato> crearContrato([FromBody] ContratoDTO contrato)
         {
-            var createdContrato = _contratoManager.CrearContrato(contrato.FechaInicio,contrato.FechaFin,contrato.Sueldo,contrato.Seniority,contrato.Empleado);
+            var createdContrato = _contratoManager.CrearContrato(contrato.FechaInicio, (DateTime)contrato.FechaFin,contrato.Sueldo,contrato.Seniority,contrato.idEmpleado);
             return createdContrato;
 
         }
