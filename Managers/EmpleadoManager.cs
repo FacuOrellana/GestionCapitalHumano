@@ -19,35 +19,47 @@ namespace GestionCapitalHumano.Managers
                 Where(e => e.Is_Deleted == false).ToList(); 
         }
 
-        public Empleado crearEmpleado(EmpleadoDTO empleadoDTO)
+        public String crearEmpleado(EmpleadoDTO empleadoDTO)
         {
             using (var context = new CapitalHumanoContext())
             {
                 try
                 {
-                    // Mapear los datos de EmpleadoDTO a Empleado
-                    Empleado empleado = new Empleado
+
+                    var checkEmpleado = context.Empleados.FirstOrDefault(e => e.Dni == empleadoDTO.Dni || e.Legajo== empleadoDTO.Legajo );
+                    if (checkEmpleado == null)
                     {
-                        Nombre = empleadoDTO.Nombre,
-                        Apellido = empleadoDTO.Apellido,
-                        Legajo = empleadoDTO.Legajo,
-                        Dni = empleadoDTO.Dni,
-                        Celular = empleadoDTO.Celular,
-                        FechaNacimiento = empleadoDTO.FechaNacimiento,
-                        Direccion = empleadoDTO.Direccion,
-                        Ciudad = empleadoDTO.Ciudad,
-                        Email = empleadoDTO.Email,
-                        ObrasocialIdObraSocial = empleadoDTO.IdObraSocial,
-                        SindicatoIdSindicato = empleadoDTO.IdSindicato,
-                        PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo,
-                        EquipoTrabajoIdEquipoTrabajo = empleadoDTO.IdEquipoTrabajo
-                    };
+                        // Mapear los datos de EmpleadoDTO a Empleado
+                        Empleado empleado = new Empleado
+                        {
+                            Nombre = empleadoDTO.Nombre,
+                            Apellido = empleadoDTO.Apellido,
+                            Legajo = empleadoDTO.Legajo,
+                            Dni = empleadoDTO.Dni,
+                            Celular = empleadoDTO.Celular,
+                            FechaNacimiento = empleadoDTO.FechaNacimiento,
+                            Direccion = empleadoDTO.Direccion,
+                            Ciudad = empleadoDTO.Ciudad,
+                            Email = empleadoDTO.Email,
+                            ObrasocialIdObraSocial = empleadoDTO.IdObraSocial,
+                            SindicatoIdSindicato = empleadoDTO.IdSindicato,
+                            PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo,
+                            EquipoTrabajoIdEquipoTrabajo = empleadoDTO.IdEquipoTrabajo
+                        };
 
-                    // Agregar el empleado a la base de datos
-                    EntityEntry<Empleado> entityEntry = context.Empleados.Add(empleado);
-                    context.SaveChanges();
+                        // Agregar el empleado a la base de datos
+                        EntityEntry<Empleado> entityEntry = context.Empleados.Add(empleado);
+                        context.SaveChanges();
+                        String message = "Empleado registrado con exito!.";
+                        return message;
+                    }
+                    else
+                    {
+                        String message = "Ya existe un empleado con ese DNI o Legajo.";
+                        return  message;
+                    }
 
-                    return entityEntry.Entity;
+                  
                 }
                 catch (Exception ex)
                 {

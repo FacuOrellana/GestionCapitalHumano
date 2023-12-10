@@ -7,7 +7,7 @@ namespace GestionCapitalHumano.Interfaces
     {
         public List<Empleado> getEmpleados();
 
-        public Empleado crearEmpleado(EmpleadoDTO empleado);
+        public String crearEmpleado(EmpleadoDTO empleado);
 
         public Empleado getEmpleado(int id);
         public Empleado editarEmpleado(EmpleadoDTO empleado, int id);

@@ -19,14 +19,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Registra la implementación de IAreasManager
-builder.Services.AddScoped<IAreasManager, AreaManager>(); // Reemplaza 'AreasManager' con la implementación real que estás utilizando
+// Registra la implementaciï¿½n de IAreasManager
+builder.Services.AddScoped<IAreasManager, AreaManager>(); // Reemplaza 'AreasManager' con la implementaciï¿½n real que estï¿½s utilizando
 builder.Services.AddScoped<IContratoManager, ContratoManager>();
 builder.Services.AddScoped<IPuestoTrabajoManager, PuestoTrabajoManager>();
 builder.Services.AddScoped<IObraSocialManager, ObraSocialManager>();
 builder.Services.AddScoped<ISindicatoManager, SindicatoManager>();
 builder.Services.AddScoped<IEquipoTrabajoManager, EquipoTrabajoManager>();
 builder.Services.AddScoped<IEmpleadoManager, EmpleadoManager>();
+builder.Services.AddScoped<IDepartamentoManager, DepartamentoManager>();
 builder.Services.AddScoped<ICapacitacionManager, CapacitacionManager>();
 var app = builder.Build();
 
