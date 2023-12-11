@@ -69,7 +69,7 @@ namespace GestionCapitalHumano.Managers
                 {
                     AreaIdArea = departamento.AreaIdArea,
                     Descripcion = departamento.Descripcion,
-                    Is_Deleted = false
+                    Is_Deleted = false  
                 };
                 context.Departamentos.Add(departamentoNew);
                 context.SaveChanges();
