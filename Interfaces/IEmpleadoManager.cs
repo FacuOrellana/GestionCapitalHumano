@@ -11,7 +11,7 @@ namespace GestionCapitalHumano.Interfaces
         public void deleteEmpleado(int id);
 
         public Empleado getEmpleado(int id);
-        public Empleado editarEmpleado(EmpleadoDTO empleado, int id);
+        public String editarEmpleado(EmpleadoDTO empleado, int id);
 
     }
 }

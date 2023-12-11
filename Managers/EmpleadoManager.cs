@@ -69,43 +69,56 @@ namespace GestionCapitalHumano.Managers
                 }
             }
         }
-        public Empleado editarEmpleado(EmpleadoDTO empleadoDTO, int id)
+        public String editarEmpleado(EmpleadoDTO empleadoDTO, int id)
         {
             using (var context = new CapitalHumanoContext())
             {
                 try
                 {
                     // Buscar el empleado existente por su Id
-                    Empleado empleadoExistente = context.Empleados.Find(id);
-
-                    if (empleadoExistente != null)
+                    var checkEmpleado = context.Empleados.FirstOrDefault(e => (e.Dni == empleadoDTO.Dni || e.Legajo == empleadoDTO.Legajo) && e.IdEmpleado!=id);
+                    if (checkEmpleado == null)
                     {
-                        // Actualizar las propiedades del empleado con los valores proporcionados en empleadoDTO
-                        empleadoExistente.Nombre = empleadoDTO.Nombre;
-                        empleadoExistente.Apellido = empleadoDTO.Apellido;
-                        empleadoExistente.Legajo = empleadoDTO.Legajo;
-                        empleadoExistente.Dni = empleadoDTO.Dni;
-                        empleadoExistente.Celular = empleadoDTO.Celular;
-                        empleadoExistente.FechaNacimiento = empleadoDTO.FechaNacimiento;
-                        empleadoExistente.Direccion = empleadoDTO.Direccion;
-                        empleadoExistente.Ciudad = empleadoDTO.Ciudad;
-                        empleadoExistente.Email = empleadoDTO.Email;
-                        empleadoExistente.ObrasocialIdObraSocial = empleadoDTO.IdObraSocial;
-                        empleadoExistente.SindicatoIdSindicato = empleadoDTO.IdSindicato;
-                        empleadoExistente.PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo;
-                        empleadoExistente.EquipoTrabajoIdEquipoTrabajo = empleadoDTO.IdEquipoTrabajo;
+                        Empleado empleadoExistente = context.Empleados.Find(id);
 
-                        // Guardar los cambios en la base de datos
-                        context.SaveChanges();
+                        if (empleadoExistente != null)
+                        {
+                            // Actualizar las propiedades del empleado con los valores proporcionados en empleadoDTO
+                            empleadoExistente.Nombre = empleadoDTO.Nombre;
+                            empleadoExistente.Apellido = empleadoDTO.Apellido;
+                            empleadoExistente.Legajo = empleadoDTO.Legajo;
+                            empleadoExistente.Dni = empleadoDTO.Dni;
+                            empleadoExistente.Celular = empleadoDTO.Celular;
+                            empleadoExistente.FechaNacimiento = empleadoDTO.FechaNacimiento;
+                            empleadoExistente.Direccion = empleadoDTO.Direccion;
+                            empleadoExistente.Ciudad = empleadoDTO.Ciudad;
+                            empleadoExistente.Email = empleadoDTO.Email;
+                            empleadoExistente.ObrasocialIdObraSocial = empleadoDTO.IdObraSocial;
+                            empleadoExistente.SindicatoIdSindicato = empleadoDTO.IdSindicato;
+                            empleadoExistente.PuestoTrabajoIdPuestoTrabajo = empleadoDTO.IdPuestoTrabajo;
+                            empleadoExistente.EquipoTrabajoIdEquipoTrabajo = empleadoDTO.IdEquipoTrabajo;
 
-                        return empleadoExistente;
+                            // Guardar los cambios en la base de datos
+                            context.SaveChanges();
+
+                            return "Se ha editado el empleado con exito!";
+                        }
+                        else
+                        {
+                            // Manejar el caso en que no se encuentre el empleado
+                            String message = "No se encontro un empleado con ese ID";
+                            Console.WriteLine($"No se encontró el empleado con Id {id}");
+                            return message; // Puedes manejarlo devolviendo null u otro valor según tus necesidades
+                        }
+
                     }
                     else
                     {
-                        // Manejar el caso en que no se encuentre el empleado
-                        Console.WriteLine($"No se encontró el empleado con Id {id}");
-                        return null; // Puedes manejarlo devolviendo null u otro valor según tus necesidades
+                        String message = "Ya existe un empleado con ese DNI o Legajo.";
+                        return message;
                     }
+
+                  
                 }
                 catch (Exception ex)
                 {
