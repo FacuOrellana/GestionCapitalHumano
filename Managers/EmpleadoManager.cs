@@ -77,7 +77,7 @@ namespace GestionCapitalHumano.Managers
                 {
                     // Buscar el empleado existente por su Id
                     var checkEmpleado = context.Empleados.FirstOrDefault(e => (e.Dni == empleadoDTO.Dni || e.Legajo == empleadoDTO.Legajo) && e.IdEmpleado!=id);
-                    if (checkEmpleado == null)
+                    if (checkEmpleado != null)
                     {
                         Empleado empleadoExistente = context.Empleados.Find(id);
 
