@@ -15,7 +15,7 @@ namespace GestionCapitalHumano.Managers
                     EquipoTrabajo equipo = new EquipoTrabajo
                     {
                         Descripcion = equipoTrabajo.Descripcion,
-                        IdDepartamento = equipoTrabajo.IdDepartamento,
+                        DepartamentoIdDepartamento = equipoTrabajo.IdDepartamento,
                         Is_Deleted = false,
                     };
                     context.EquipoTrabajos.Add(equipo);
@@ -53,7 +53,7 @@ namespace GestionCapitalHumano.Managers
             if(equipoExistente != null)
             {
                 equipoExistente.Descripcion = equipoTrabajo.Descripcion;
-                equipoExistente.IdDepartamento = equipoTrabajo.IdDepartamento;
+                equipoExistente.DepartamentoIdDepartamento = equipoTrabajo.IdDepartamento;
                 context.SaveChanges();
                 return equipoExistente;
             }

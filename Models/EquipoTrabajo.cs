@@ -9,6 +9,7 @@ public partial class EquipoTrabajo
 
     public string? Descripcion { get; set; }
 
-    public int? IdDepartamento { get; set; }
+    public int? DepartamentoIdDepartamento { get; set; }
+    public virtual Departamento Departamento { get; set; }
     public bool Is_Deleted { get; set; }
 }

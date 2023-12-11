@@ -9,6 +9,7 @@ public partial class Departamento
 
     public string Descripcion { get; set; }
 
-    public int IdArea { get; set; }
+    public int AreaIdArea { get; set; }
+    public virtual Area Area { get; set; }
     public bool Is_Deleted { get; set; }
 }

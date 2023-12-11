@@ -66,7 +66,7 @@ namespace GestionCapitalHumano.Managers
             {
                 Departamento departamentoNew = new Departamento()
                 {
-                    IdArea = departamento.IdArea,
+                    AreaIdArea = departamento.IdArea,
                     Descripcion = departamento.Descripcion,
                     Is_Deleted = false
                 };
@@ -88,7 +88,7 @@ namespace GestionCapitalHumano.Managers
                 var departamentoExistente = context.Departamentos.FirstOrDefault(e => e.IdDepartamento == id);
                 if(departamentoExistente != null)
                 {
-                    departamentoExistente.IdArea = departamento.IdArea;
+                    departamentoExistente.AreaIdArea = departamento.IdArea;
                     departamentoExistente.Descripcion = departamento.Descripcion;
                     context.SaveChanges();
                     return departamentoExistente;

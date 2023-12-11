@@ -120,12 +120,14 @@ namespace GestionCapitalHumano.Managers
         {
             using (var context = new CapitalHumanoContext())
             {
-                var empleado = context.Empleados.
-                    Include(e => e.ObraSocial).
-                    Include(e => e.Sindicato).
-                    Include(e => e.PuestoTrabajo).
-                    Include(e => e.EquipoTrabajo).
-                    FirstOrDefault(e => e.IdEmpleado == id);
+                var empleado = context.Empleados
+            .Include(e => e.ObraSocial)
+            .Include(e => e.Sindicato)
+            .Include(e => e.PuestoTrabajo)
+            .Include(e => e.EquipoTrabajo)
+                .ThenInclude(et => et.Departamento)
+                    .ThenInclude(d => d.Area)
+            .FirstOrDefault(e => e.IdEmpleado == id);
                 if (empleado == null)
                 {
                     return null; // Aquí devuelve null en lugar de NotFound() ya que NotFound() no es aplicable en un método que no es un controlador de ASP.NET Core.
