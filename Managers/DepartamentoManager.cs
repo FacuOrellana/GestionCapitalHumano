@@ -1,6 +1,7 @@
 ﻿using GestionCapitalHumano.DTOs;
 using GestionCapitalHumano.Interfaces;
 using GestionCapitalHumano.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestionCapitalHumano.Managers
 {
@@ -10,7 +11,7 @@ namespace GestionCapitalHumano.Managers
         {
             using (var context = new CapitalHumanoContext())
             {
-                return context.Departamentos.Where(e => e.Is_Deleted == false).ToList();
+                return context.Departamentos.Include(d => d.Area).Where(e => e.Is_Deleted == false).ToList();
             }
         }
 
@@ -43,7 +44,7 @@ namespace GestionCapitalHumano.Managers
             var context = new CapitalHumanoContext();
             try
             {
-                var departamentoExistente = context.Departamentos.FirstOrDefault(e => e.IdDepartamento == id);
+                var departamentoExistente = context.Departamentos.Include(d => d.Area).FirstOrDefault(e => e.IdDepartamento == id);
                 if(departamentoExistente != null)
                 {
                     return departamentoExistente;
@@ -66,7 +67,7 @@ namespace GestionCapitalHumano.Managers
             {
                 Departamento departamentoNew = new Departamento()
                 {
-                    AreaIdArea = departamento.IdArea,
+                    AreaIdArea = departamento.AreaIdArea,
                     Descripcion = departamento.Descripcion,
                     Is_Deleted = false
                 };
@@ -88,7 +89,7 @@ namespace GestionCapitalHumano.Managers
                 var departamentoExistente = context.Departamentos.FirstOrDefault(e => e.IdDepartamento == id);
                 if(departamentoExistente != null)
                 {
-                    departamentoExistente.AreaIdArea = departamento.IdArea;
+                    departamentoExistente.AreaIdArea = departamento.AreaIdArea;
                     departamentoExistente.Descripcion = departamento.Descripcion;
                     context.SaveChanges();
                     return departamentoExistente;
