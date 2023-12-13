@@ -76,7 +76,7 @@ namespace GestionCapitalHumano.Managers
                 try
                 {
                     // Buscar si existe un empleado con el dni y legajo a cargar.
-                    var checkEmpleado = context.Empleados.FirstOrDefault(e => e.Dni == empleadoDTO.Dni || e.Legajo == empleadoDTO.Legajo);
+                    var checkEmpleado = context.Empleados.FirstOrDefault(e => e.Dni == empleadoDTO.Dni || e.Legajo == empleadoDTO.Legajo); 
 
                     if (checkEmpleado.IdEmpleado == id)
                     {
